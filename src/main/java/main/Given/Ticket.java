@@ -1,0 +1,109 @@
+package main.Given;
+import main.Enums.TicketType;
+import main.Enums.*;
+
+import java.time.ZonedDateTime;
+import java.util.Objects;
+
+public class Ticket {
+    private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private String name; //Поле не может быть null, Строка не может быть пустой
+    private Coordinates coordinates; //Поле не может быть null
+    private final java.time.ZonedDateTime creationDate; //TODO Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private int price; //Значение поля должно быть больше 0
+    private boolean refundable;
+    private TicketType type; //Поле может быть null
+    private Event event; //Поле не может быть null
+
+    public Ticket(long id, String name, Coordinates coordinates, int price,
+                  boolean refundable, TicketType ticketType, Event event) {
+        this.id = id;
+        setName(name);
+        setCoordinates(coordinates);
+        creationDate = ZonedDateTime.now();
+        setPrice(price);
+        setRefundable(refundable);
+        setType(ticketType);
+        setEvent(event);
+    }
+
+    public long getId() {return id;}
+
+    public void setName(String name) {
+        if (Objects.isNull(name) || name.isEmpty()) {
+            throw new IllegalArgumentException("Field 'name' can not be NULL");
+        }
+        this.name = name;
+    }
+
+    public String getName() {return name;}
+
+    public void setCoordinates(Coordinates coordinates) {
+        if (Objects.isNull(coordinates)) {
+            throw new IllegalArgumentException("Field 'coordinates' can not be NULL");
+        }
+        this.coordinates = coordinates;
+//TODO in main:
+//        if (Objects.equals(coordinates.getX(), x)) {
+//            coordinates.setX(x);
+//        } else if (Objects.equals(coordinates.getY(), y)) {
+//            coordinates.setY(y);
+//            return;
+//        }
+//        coordinates.valid(x, y);
+    }
+
+    public Coordinates getCoordinates() {return coordinates;}
+
+    public void setPrice(int price) {
+        if (price > 0) {
+            this.price = price;
+            return;
+        }
+        throw new IllegalArgumentException("Field 'price' can not be negative or 0");
+    }
+
+    public int getPrice() {return price;}
+
+    public void setRefundable(boolean refundable) {this.refundable = refundable;}
+
+    public boolean isRefundable() {return refundable;}
+
+    public void setType(TicketType type) {this.type = type;}
+
+    public TicketType getType() {return type;}
+
+    public void setEvent(Event event) {
+        if (Objects.isNull(event)) {
+            throw new IllegalArgumentException("Field 'event' can not be NULL");
+        }
+        this.event = event;
+    }
+
+    public Event getEvent() {return event;}
+
+    public ZonedDateTime getCreationDate() {return creationDate;}
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, coordinates, creationDate, price, refundable, type, event);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != getClass()) {return false;}
+        Ticket that = (Ticket) obj;
+        return super.equals(obj) && Objects.equals(that.name, name) && Objects.equals(that.id, id)
+                && Objects.equals(that.coordinates, coordinates) && Objects.equals(that.creationDate, creationDate)
+                && Objects.equals(that.price, price) && Objects.equals(that.refundable, refundable)
+                && Objects.equals(that.type, type) && Objects.equals(that.event, event);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Ticket{id='%d', name='%s', coordinates='%s', creationDate='%s'," +
+                        " price='%d', refundable='%s', type='%s', event='%s'}",
+                id, name, coordinates, creationDate, price, refundable, type, event);
+    }
+}
