@@ -1,12 +1,11 @@
 package main.Given;
 
 import main.Given.Enums.TicketType;
-
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-public class Ticket {
+public class Ticket implements Comparable<Ticket> {
     private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -104,5 +103,10 @@ public class Ticket {
         return String.format("Ticket{id='%d', name='%s', coordinates='%s', creationDate='%s'," +
                         " price='%d', refundable='%s', type='%s', event='%s'}",
                 id, name, coordinates, creationDate, price, refundable, type, event);
+    }
+
+    @Override
+    public int compareTo(Ticket other) {
+        return Integer.compare(this.price, other.price) + Integer.compare(this.type.ordinal(), other.type.ordinal());
     }
 }
