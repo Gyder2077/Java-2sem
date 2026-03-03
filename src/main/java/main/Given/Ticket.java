@@ -1,15 +1,16 @@
 package main.Given;
-import main.Enums.TicketType;
-import main.Enums.*;
+
+import main.Given.Enums.TicketType;
 
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Ticket {
     private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private final java.time.ZonedDateTime creationDate; //TODO Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final java.time.ZonedDateTime creationDate; // Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private int price; //Значение поля должно быть больше 0
     private boolean refundable;
     private TicketType type; //Поле может быть null
@@ -20,7 +21,7 @@ public class Ticket {
         this.id = id;
         setName(name);
         setCoordinates(coordinates);
-        creationDate = ZonedDateTime.now();
+        creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         setPrice(price);
         setRefundable(refundable);
         setType(ticketType);
@@ -86,9 +87,7 @@ public class Ticket {
 
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, name, coordinates, creationDate, price, refundable, type, event);
-    }
+    public int hashCode() {return Objects.hash(id, name, coordinates, creationDate, price, refundable, type, event);}
 
     @Override
     public boolean equals(Object obj) {

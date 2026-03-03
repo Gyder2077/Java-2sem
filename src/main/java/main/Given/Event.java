@@ -1,5 +1,5 @@
 package main.Given;
-import main.Enums.EventType;
+import main.Given.Enums.*;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
