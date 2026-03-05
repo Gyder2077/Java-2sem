@@ -20,7 +20,7 @@ public class Ticket implements Comparable<Ticket> {
         this.id = id;
         setName(name);
         setCoordinates(coordinates);
-        creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
         setPrice(price);
         setRefundable(refundable);
         setType(ticketType);

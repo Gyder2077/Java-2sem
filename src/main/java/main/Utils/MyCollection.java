@@ -1,19 +1,14 @@
-package main.Collection;
+package main.Utils;
 
 import main.Given.Ticket;
-
 import java.util.*;
 
 public class MyCollection {
     private static ArrayDeque<Ticket> myCollection;
     private static long nextId = 0;
-    private static final MyCollection Instance = new MyCollection();
+    public static final MyCollection Instance = new MyCollection();
 
     private MyCollection() {myCollection = new ArrayDeque<>();}
-
-    public static MyCollection getInstance() {
-        return Instance;
-    }
 
     public ArrayDeque<Ticket> getMyCollection() {
         return myCollection;

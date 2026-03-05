@@ -10,6 +10,6 @@ public class Add implements Command {
 
     @Override
     public String toString() {
-        return "";
+        return "Adds the element with following parameters th the collection";
     }
 }

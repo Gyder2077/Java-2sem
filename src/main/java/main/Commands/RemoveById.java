@@ -10,7 +10,6 @@ public class RemoveById implements Command {
 
     @Override
     public String toString() {
-
-        return "";
+        return "Removes the element from collection by ID";
     }
 }

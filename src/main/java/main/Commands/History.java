@@ -10,7 +10,6 @@ public class History implements Command {
 
     @Override
     public String toString() {
-
-        return "";
+        return "Shows last 8 commands used";
     }
 }

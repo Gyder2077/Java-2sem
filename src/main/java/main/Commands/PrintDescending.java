@@ -10,7 +10,6 @@ public class PrintDescending implements Command {
 
     @Override
     public String toString() {
-
-        return "";
+        return "Shows all elements sorted in the reverse";
     }
 }

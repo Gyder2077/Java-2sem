@@ -11,6 +11,6 @@ public class Show implements Command {
     @Override
     public String toString() {
 
-        return "";
+        return "Shows all elements in the collection";
     }
 }

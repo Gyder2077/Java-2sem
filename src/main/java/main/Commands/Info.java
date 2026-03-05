@@ -1,7 +1,7 @@
 package main.Commands;
 
 public class Info implements Command {
-    public Info(){}
+    public Info() {}
 
     @Override
     public void execute(String[] args){
@@ -10,6 +10,6 @@ public class Info implements Command {
 
     @Override
     public String toString() {
-        return "";
+        return "Shows info about the collection";
     }
 }

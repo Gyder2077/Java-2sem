@@ -11,6 +11,6 @@ public class Save implements Command {
     @Override
     public String toString() {
 
-        return "";
+        return "Saves the collection to the file";
     }
 }

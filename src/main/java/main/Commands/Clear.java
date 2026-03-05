@@ -11,6 +11,6 @@ public class Clear implements Command {
     @Override
     public String toString() {
 
-        return "";
+        return "Clears the collection";
     }
 }
