@@ -1,16 +1,16 @@
 package main.Commands;
 
+import main.Utils.Command;
+import main.Utils.MyCollection;
+
 public class Clear implements Command {
-    public Clear() {}
+    private final MyCollection myCollection;
+
+    public Clear(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
     public void execute(String[] args) {
-
-    }
-
-    @Override
-    public String toString() {
-
-        return "Clears the collection";
+        System.out.println("Clearing the collection...");
+        myCollection.clearing();
     }
 }

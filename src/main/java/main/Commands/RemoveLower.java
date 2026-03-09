@@ -1,5 +1,7 @@
 package main.Commands;
 
+import main.Utils.Command;
+
 public class RemoveLower implements Command {
     public RemoveLower() {}
 

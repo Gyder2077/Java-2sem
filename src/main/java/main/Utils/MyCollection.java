@@ -4,23 +4,26 @@ import main.Given.Ticket;
 import java.util.*;
 
 public class MyCollection {
-    private static ArrayDeque<Ticket> myCollection;
-    private static long nextId = 0;
-    public static final MyCollection Instance = new MyCollection();
+    private ArrayDeque<Ticket> myCollection;
+    private long nextId = 0;
 
-    private MyCollection() {myCollection = new ArrayDeque<>();}
+    public MyCollection() {myCollection = new ArrayDeque<>();}
 
     public ArrayDeque<Ticket> getMyCollection() {
         return myCollection;
     }
 
-    public static void setMyCollection(ArrayDeque<Ticket> myCollection) {
-        MyCollection.myCollection = myCollection;
+    public void setMyCollection(ArrayDeque<Ticket> myCollection) {
+        this.myCollection = myCollection;
     }
 
-    public static long getNextId() {
+    public long getNextId() {
         nextId += 1;
         return nextId;
+    }
+
+    public void clearing() {
+        myCollection.clear();
     }
 
     public void addElement(Ticket ticket) {

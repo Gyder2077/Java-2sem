@@ -1,15 +1,15 @@
 package main.Commands;
 
+import main.Utils.Command;
+import main.Utils.MyCollection;
+
 public class Add implements Command {
-    public Add() {}
+    private final MyCollection myCollection;
+
+    public Add(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
     public void execute(String[] args) {
 
-    }
-
-    @Override
-    public String toString() {
-        return "Adds the element with following parameters th the collection";
     }
 }

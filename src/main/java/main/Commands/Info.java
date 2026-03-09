@@ -1,15 +1,15 @@
 package main.Commands;
 
+import main.Utils.Command;
+import main.Utils.MyCollection;
+
 public class Info implements Command {
-    public Info() {}
+    private final MyCollection myCollection;
+
+    public Info(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
     public void execute(String[] args){
 
-    }
-
-    @Override
-    public String toString() {
-        return "Shows info about the collection";
     }
 }

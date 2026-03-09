@@ -1,5 +1,7 @@
 package main.Commands;
 
+import main.Utils.Command;
+
 public class Update implements Command {
     public Update() {}
 

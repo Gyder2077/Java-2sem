@@ -1,6 +1,5 @@
-package main.Commands;
+package main.Utils;
 
 public interface Command {
     void execute(String[] args);
-    String toString();
 }

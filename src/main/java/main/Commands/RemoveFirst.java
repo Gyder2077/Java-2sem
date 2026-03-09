@@ -1,14 +1,17 @@
 package main.Commands;
 
 import main.Given.Ticket;
+import main.Utils.Command;
 import main.Utils.MyCollection;
 
 public class RemoveFirst implements Command {
-    public RemoveFirst() {}
+    private final MyCollection myCollection;
+
+    public RemoveFirst(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
     public void execute(String[] args) {
-        Ticket removed = MyCollection.Instance.getMyCollection().pollFirst();
+        Ticket removed = myCollection.getMyCollection().pollFirst();
         if (removed == null) {
             throw new IllegalArgumentException("There is no such element in the collection");
         }

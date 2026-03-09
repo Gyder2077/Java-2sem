@@ -1,5 +1,7 @@
 package main.Commands;
 
+import main.Utils.Command;
+
 public class PrintDescending implements Command {
     public PrintDescending() {}
 

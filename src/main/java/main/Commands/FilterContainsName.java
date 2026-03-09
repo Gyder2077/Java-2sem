@@ -1,5 +1,7 @@
 package main.Commands;
 
+import main.Utils.Command;
+
 public class FilterContainsName implements Command {
     public FilterContainsName() {}
 

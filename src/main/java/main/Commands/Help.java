@@ -1,5 +1,7 @@
 package main.Commands;
 
+import main.Utils.Command;
+
 public class Help implements Command {
     public Help() {}
 
@@ -10,7 +12,6 @@ public class Help implements Command {
 
     @Override
     public String toString() {
-
-        return "";
+        return "Shows list of commands";
     }
 }
