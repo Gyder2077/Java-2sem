@@ -9,7 +9,7 @@ public class Add implements Command {
     public Add(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
 
     }
 }

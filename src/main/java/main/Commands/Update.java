@@ -1,18 +1,18 @@
 package main.Commands;
 
-import main.Utils.Command;
+import main.Utils.*;
 
 public class Update implements Command {
-    public Update() {}
+    private final MyCollection myCollection;
+    private final long id;
 
-    @Override
-    public void execute(String[] args) {
-
+    public Update(MyCollection myCollection, long id) {
+        this.myCollection = myCollection;
+        this.id = id;
     }
 
     @Override
-    public String toString() {
+    public void execute() {
 
-        return "";
     }
 }

@@ -9,7 +9,7 @@ public class Show implements Command {
     public Show(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
 
     }
 }

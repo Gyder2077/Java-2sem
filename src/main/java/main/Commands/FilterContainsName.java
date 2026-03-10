@@ -1,18 +1,19 @@
 package main.Commands;
 
 import main.Utils.Command;
+import main.Utils.MyCollection;
 
 public class FilterContainsName implements Command {
-    public FilterContainsName() {}
+    private final String name;
+    private final MyCollection myCollection;
 
-    @Override
-    public void execute(String[] args) {
-
+    public FilterContainsName(MyCollection myCollection, String name) {
+        this.name = name;
+        this.myCollection = myCollection;
     }
 
     @Override
-    public String toString() {
+    public void execute() {
 
-        return "";
     }
 }

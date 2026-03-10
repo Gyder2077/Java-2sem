@@ -1,17 +1,18 @@
 package main.Commands;
 
-import main.Utils.Command;
+import main.Utils.*;
 
 public class RemoveById implements Command {
-    public RemoveById() {}
+    private final MyCollection myCollection;
+    private final long id;
 
-    @Override
-    public void execute(String[] args) {
-
+    public RemoveById(MyCollection myCollection, long id) {
+        this.myCollection = myCollection;
+        this.id = id;
     }
 
     @Override
-    public String toString() {
-        return "Removes the element from collection by ID";
+    public void execute() {
+
     }
 }

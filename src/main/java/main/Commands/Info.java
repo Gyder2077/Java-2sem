@@ -9,7 +9,7 @@ public class Info implements Command {
     public Info(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args){
+    public void execute(){
 
     }
 }

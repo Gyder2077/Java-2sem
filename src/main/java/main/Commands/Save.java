@@ -1,18 +1,14 @@
 package main.Commands;
 
-import main.Utils.Command;
+import main.Utils.*;
 
 public class Save implements Command {
-    public Save() {}
+    private final MyCollection myCollection;
+
+    public Save(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
 
-    }
-
-    @Override
-    public String toString() {
-
-        return "Saves the collection to the file";
     }
 }

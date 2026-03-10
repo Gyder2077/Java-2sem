@@ -10,16 +10,10 @@ public class RemoveFirst implements Command {
     public RemoveFirst(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         Ticket removed = myCollection.getMyCollection().pollFirst();
         if (removed == null) {
             throw new IllegalArgumentException("There is no such element in the collection");
         }
-
-    }
-
-    @Override
-    public String toString() {
-        return "Removes first element of the collection";
     }
 }

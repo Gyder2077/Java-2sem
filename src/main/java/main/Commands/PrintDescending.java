@@ -1,17 +1,15 @@
 package main.Commands;
 
 import main.Utils.Command;
+import main.Utils.MyCollection;
 
 public class PrintDescending implements Command {
-    public PrintDescending() {}
+    private final MyCollection myCollection;
+
+    public PrintDescending(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
 
-    }
-
-    @Override
-    public String toString() {
-        return "Shows all elements sorted in the reverse";
     }
 }

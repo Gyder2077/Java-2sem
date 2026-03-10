@@ -1,17 +1,15 @@
 package main.Commands;
 
-import main.Utils.Command;
+import main.Utils.*;
+import java.util.*;
 
 public class Help implements Command {
-    public Help() {}
+    private final Map<String, CommandInfo> commands;
+
+    public Help(Map<String, CommandInfo> commands) {this.commands = commands;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
 
-    }
-
-    @Override
-    public String toString() {
-        return "Shows list of commands";
     }
 }

@@ -2,16 +2,15 @@ package main.Commands;
 
 import main.Utils.Command;
 
+import java.util.ArrayDeque;
+
 public class History implements Command {
-    public History() {}
+    private final ArrayDeque<String> history;
+
+    public History(ArrayDeque<String> history) {this.history = history;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
 
-    }
-
-    @Override
-    public String toString() {
-        return "Shows last 8 commands used";
     }
 }

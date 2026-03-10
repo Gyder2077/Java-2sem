@@ -9,7 +9,7 @@ public class Clear implements Command {
     public Clear(MyCollection myCollection) {this.myCollection = myCollection;}
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         System.out.println("Clearing the collection...");
         myCollection.clearing();
     }
