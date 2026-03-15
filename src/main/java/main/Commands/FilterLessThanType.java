@@ -14,6 +14,10 @@ public class FilterLessThanType implements Command {
 
     @Override
     public void execute() {
-
+        if (myCollection.getMyCollection().isEmpty()) {
+            System.out.println("The collection is empty");
+            return;
+        }
+        myCollection.filtered(type);
     }
 }

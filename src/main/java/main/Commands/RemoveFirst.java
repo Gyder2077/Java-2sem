@@ -13,7 +13,7 @@ public class RemoveFirst implements Command {
     public void execute() {
         Ticket removed = myCollection.getMyCollection().pollFirst();
         if (removed == null) {
-            throw new IllegalArgumentException("There is no such element in the collection");
+            System.out.println("The collection is empty");
         }
     }
 }

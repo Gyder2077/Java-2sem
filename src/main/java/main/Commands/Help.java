@@ -10,6 +10,10 @@ public class Help implements Command {
 
     @Override
     public void execute() {
-
+        System.out.println("Available commands:");
+        for (Object obj : commands.values().stream().sorted(Comparator.comparing(CommandInfo::name)).toArray()) {
+            CommandInfo info = (CommandInfo) obj;
+            System.out.printf("%-21s - %s%n", info.name(), info.description());
+        }
     }
 }

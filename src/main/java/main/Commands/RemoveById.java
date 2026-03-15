@@ -13,6 +13,14 @@ public class RemoveById implements Command {
 
     @Override
     public void execute() {
-
+        if (myCollection.getMyCollection().isEmpty()) {
+            System.out.println("The collection is empty");
+            return;
+        }
+        try {
+            myCollection.delElement(id);
+        } catch (IllegalArgumentException e) {
+            System.out.println("The collection does not contain element with such id");
+        }
     }
 }

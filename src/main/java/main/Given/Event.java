@@ -10,20 +10,13 @@ public class Event {
     private java.time.ZonedDateTime date; //Поле не может быть null
     private EventType eventType; //Поле не может быть null
 
-    public Event(long id, String name, java.time.ZonedDateTime date, EventType eventType) {
+    public Event(long id) {
         this.id = id;
-        setName(name);
-        setDate(date);
-        setEventType(eventType);
-    }
-
-    public long getId() {
-        return id;
     }
 
     public void setName(String name) {
         if (Objects.isNull(name) || name.isEmpty()) {
-            throw new IllegalArgumentException("Name did not pass validation");
+            throw new IllegalArgumentException("Field 'name' can not be NULL");
         }
         this.name = name;
     }
@@ -34,7 +27,7 @@ public class Event {
 
     public void setDate(java.time.ZonedDateTime date) {
         if (Objects.isNull(date)) {
-            throw new IllegalArgumentException("Date did not pass validation");
+            throw new IllegalArgumentException("Field 'date' can not be NULL");
         }
         this.date = date;
     }
@@ -45,7 +38,7 @@ public class Event {
 
     public void setEventType(EventType eventType) {
         if (Objects.isNull(eventType)) {
-            throw new IllegalArgumentException("EventType did not pass validation");
+            throw new IllegalArgumentException("Field 'eventType' can not be NULL");
         }
         this.eventType = eventType;
     }
@@ -69,7 +62,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return String.format("Event{id='%d', name='%s', date='%s', eventType='%s'}",
+        return String.format("Event {id = %d, name = %s, date = %s, eventType = %s}",
                 id, name, date, eventType);
     }
 }

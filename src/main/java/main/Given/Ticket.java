@@ -15,16 +15,9 @@ public class Ticket implements Comparable<Ticket> {
     private TicketType type; //Поле может быть null
     private Event event; //Поле не может быть null
 
-    public Ticket(long id, String name, Coordinates coordinates, int price,
-                  boolean refundable, TicketType ticketType, Event event) {
+    public Ticket(long id) {
         this.id = id;
-        setName(name);
-        setCoordinates(coordinates);
         creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
-        setPrice(price);
-        setRefundable(refundable);
-        setType(ticketType);
-        setEvent(event);
     }
 
     public long getId() {return id;}
@@ -43,14 +36,6 @@ public class Ticket implements Comparable<Ticket> {
             throw new IllegalArgumentException("Field 'coordinates' can not be NULL");
         }
         this.coordinates = coordinates;
-//TODO in main:
-//        if (Objects.equals(coordinates.getX(), x)) {
-//            coordinates.setX(x);
-//        } else if (Objects.equals(coordinates.getY(), y)) {
-//            coordinates.setY(y);
-//            return;
-//        }
-//        coordinates.valid(x, y);
     }
 
     public Coordinates getCoordinates() {return coordinates;}
@@ -60,14 +45,14 @@ public class Ticket implements Comparable<Ticket> {
             this.price = price;
             return;
         }
-        throw new IllegalArgumentException("Field 'price' can not be negative or 0");
+        throw new IllegalArgumentException("Field 'price' must be positive");
     }
 
     public int getPrice() {return price;}
 
     public void setRefundable(boolean refundable) {this.refundable = refundable;}
 
-    public boolean isRefundable() {return refundable;}
+    public boolean getRefundable() {return refundable;}
 
     public void setType(TicketType type) {this.type = type;}
 
@@ -100,7 +85,7 @@ public class Ticket implements Comparable<Ticket> {
 
     @Override
     public String toString() {
-        return String.format("Ticket{id='%d', name='%s', coordinates='%s', creationDate='%s'," +
+        return String.format("Ticket {id='%d', name='%s', coordinates='%s', creationDate='%s'," +
                         " price='%d', refundable='%s', type='%s', event='%s'}",
                 id, name, coordinates, creationDate, price, refundable, type, event);
     }

@@ -6,17 +6,7 @@ public class Coordinates {
     private Float x; //Поле не может быть null
     private Double y; //Значение поля должно быть больше -231, Поле не может быть null
 
-    public Coordinates(Float x, Double y) {
-        setX(x);
-        setY(y);
-    }
-
-    public Float getX() {
-        return x;
-    }
-
-    public Double getY() {
-        return y;
+    public Coordinates() {
     }
 
     public void setX(Float x) {
@@ -24,15 +14,15 @@ public class Coordinates {
             this.x = x;
             return;
         }
-        throw new IllegalArgumentException("Illegal X Coordinates");
+        throw new IllegalArgumentException("X Coordinates should not be null");
     }
 
     public void setY(Double y) {
         if (!(y == null || y <= -231.0)) {
         this.y = y;
         return;
-    }
-        throw new IllegalArgumentException("Illegal Y Coordinates");
+        }
+        throw new IllegalArgumentException("Y Coordinates must be more than -231");
     }
 
     @Override
@@ -49,6 +39,6 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return String.format("Coordinates{x = %s, y = %s}", x, y);
+        return String.format("Coordinates {x = %s, y = %s}", x, y);
     }
 }

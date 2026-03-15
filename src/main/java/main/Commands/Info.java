@@ -1,15 +1,15 @@
 package main.Commands;
 
-import main.Utils.Command;
-import main.Utils.MyCollection;
+import main.Utils.*;
 
 public class Info implements Command {
-    private final MyCollection myCollection;
+    private final MyCollection coll;
 
-    public Info(MyCollection myCollection) {this.myCollection = myCollection;}
+    public Info(MyCollection coll) {this.coll = coll;}
 
     @Override
-    public void execute(){
-
+    public void execute() {
+        System.out.printf("Collection type: %s%nCollection size: %d%nCreation date: %s%n",
+                coll.getMyCollection().getClass().getName(), coll.getMyCollection().size(), coll.getDateTime());
     }
 }
