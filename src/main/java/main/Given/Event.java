@@ -14,6 +14,8 @@ public class Event {
         this.id = id;
     }
 
+    public long getId() {return id;}
+
     public void setName(String name) {
         if (Objects.isNull(name) || name.isEmpty()) {
             throw new IllegalArgumentException("Field 'name' can not be NULL");

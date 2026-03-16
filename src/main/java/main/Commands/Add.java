@@ -18,6 +18,7 @@ public class Add implements Command {
     @Override
     public void execute() {
         Ticket newTicket = new Ticket(myCollection.getNextId());
+        myCollection.setNextId(newTicket.getId() + 1);
         newTicket = new InputManager().parseObject(newTicket, scanner);
         if (!Objects.isNull(newTicket)) {
             myCollection.addElement(newTicket);

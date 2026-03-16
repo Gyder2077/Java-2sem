@@ -199,20 +199,4 @@ public class Invoker {
             }
         }
     }
-
-    private boolean validate(String prompt) {
-        System.out.print(prompt + " (Yes/No): ");
-        while (true) {
-            String input = scanner.nextLine().trim().toLowerCase();
-
-            if (input.equals("yes") || input.equals("y")) {
-                return true;
-            }
-
-            if (input.equals("no") || input.equals("n")) {
-                return false;
-            }
-            System.out.println("Enter 'Yes' or 'No', please (Y/N is OK).");
-        }
-    }
 }

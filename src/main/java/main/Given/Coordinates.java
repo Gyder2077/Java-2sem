@@ -9,6 +9,10 @@ public class Coordinates {
     public Coordinates() {
     }
 
+    public Float getX() {return x;}
+
+    public Double getY() {return y;}
+
     public void setX(Float x) {
         if (!(x == null)) {
             this.x = x;

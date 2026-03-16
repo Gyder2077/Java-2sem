@@ -8,19 +8,22 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class MyCollection {
-    private ArrayDeque<Ticket> myCollection;
-    private final ArrayDeque<String> history = new ArrayDeque<>();
-    private final ZonedDateTime dateTime;
+    private ArrayDeque<Ticket> myCollection = new ArrayDeque<>();
+    private ArrayDeque<String> history = new ArrayDeque<>();
+    private ZonedDateTime dateTime;
     private long nextId = 0;
 
     public MyCollection() {
-        myCollection = new ArrayDeque<>();
         dateTime = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
+
+    public void setDateTime(ZonedDateTime dateTime) {this.dateTime = dateTime;}
 
     public ZonedDateTime getDateTime() {
         return dateTime;
     }
+
+    public void setHistory(ArrayDeque<String> history) {this.history = history;}
 
     public ArrayDeque<String> getHistory() {return history;}
 
@@ -32,8 +35,9 @@ public class MyCollection {
         this.myCollection = myCollection;
     }
 
+    public void setNextId(long nextId) {this.nextId = nextId;}
+
     public long getNextId() {
-        nextId += 1;
         return nextId;
     }
 
