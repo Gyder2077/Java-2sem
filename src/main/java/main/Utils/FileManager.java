@@ -16,7 +16,7 @@ public class FileManager {
             for (Ticket ticket : collection.getMyCollection()) {
                 writer.write("  <ticket>\n");
                 writer.write("    <id>" + ticket.getId() + "</id>\n");
-                writer.write("    <name>" + xmlFormat(ticket.getName()) + "</name>\n");
+                writer.write("    <name>" + ticket.getName() + "</name>\n");
                 writer.write("    <coordinates>");
                 writer.write("      <coordinateX>" + ticket.getCoordinates().getX() + "</coordinateX>\n");
                 writer.write("      <coordinateY>" + ticket.getCoordinates().getY() + "</coordinateY>\n");
@@ -27,22 +27,23 @@ public class FileManager {
                 writer.write("    <type>" + ticket.getType() + "</type>\n");
                 writer.write("    <event>\n");
                 writer.write("      <id>" + ticket.getEvent().getId() + "</id>\n");
-                writer.write("      <name>" + xmlFormat(ticket.getEvent().getName()) + "</name>\n");
+                writer.write("      <name>" + ticket.getEvent().getName() + "</name>\n");
                 writer.write("      <date>" + ticket.getEvent().getDate() + "</date>\n");
                 writer.write("      <eventType>" + ticket.getEvent().getEventType() + "</eventType>\n");
                 writer.write("    </event>\n");
                 writer.write("  </ticket>\n");
             }
-            writer.write("</collection>\n");
 
-            writer.write("<history>\n");
+            writer.write("  <history>\n");
             for (String command : collection.getHistory()) {
-                writer.write("  <command>" + command + "</command>\n");
+                writer.write("      <command>" + command + "</command>\n");
             }
-            writer.write("</history>\n");
+            writer.write("  </history>\n");
 
-            writer.write("<creationDate>" + collection.getDateTime() + "</creationDate>\n");
-            writer.write("<nextId>" + collection.getNextId() + "</nextId>\n");
+            writer.write("  <creationDate>" + collection.getDateTime() + "</creationDate>\n");
+            writer.write("  <nextId>" + collection.getNextId() + "</nextId>\n");
+
+            writer.write("</collection>\n");
 
             System.out.println("XML file was written successfully");
             return true;
@@ -50,11 +51,5 @@ public class FileManager {
             e.printStackTrace();
             return false;
         }
-    }
-
-    private String xmlFormat(String text) {
-        return text.replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;");
     }
 }
