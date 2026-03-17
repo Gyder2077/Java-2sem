@@ -206,6 +206,7 @@ public class Invoker {
             } else {
                 receiver.getHistory().addLast(info.name());
             }
+            System.out.println();
         }
     }
 
@@ -225,6 +226,7 @@ public class Invoker {
             return true;
         }
 
+        System.out.println("Executing command: " + info.name());
         if (command instanceof Add || command instanceof Update || command instanceof RemoveLower) {
             if (!command.executeByScript(reader, fileManager)) return false;
         } else if (command instanceof ExecuteScript) {
@@ -239,6 +241,8 @@ public class Invoker {
         } else {
             receiver.getHistory().addLast(info.name());
         }
+        System.out.println();
+        System.out.println();
         return true;
     }
 }
