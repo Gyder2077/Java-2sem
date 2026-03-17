@@ -3,6 +3,7 @@ package main.Commands;
 import main.Given.Ticket;
 import main.Utils.*;
 
+import java.io.BufferedReader;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Scanner;
@@ -38,5 +39,27 @@ public class Update implements Command {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean executeByScript(BufferedReader reader, FileManager fileManager) {
+        if (myCollection.getMyCollection().isEmpty()) {
+            return false;
+        }
+        Ticket toUpdate;
+        Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
+        while (iterator.hasNext()) {
+            Ticket t = iterator.next();
+            if (t.getId() == id) {
+                toUpdate = fileManager.readObject(t, reader);
+                if (Objects.isNull(toUpdate)) {
+                    return false;
+                }
+                iterator.remove();
+                myCollection.addElement(toUpdate);
+                break;
+            }
+        }
+        return false;
     }
 }

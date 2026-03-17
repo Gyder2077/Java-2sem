@@ -11,7 +11,7 @@ public class MyCollection {
     private ArrayDeque<Ticket> myCollection = new ArrayDeque<>();
     private ArrayDeque<String> history = new ArrayDeque<>();
     private ZonedDateTime dateTime;
-    private long nextId = 0;
+    private long nextId = 1;
 
     public MyCollection() {
         dateTime = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);

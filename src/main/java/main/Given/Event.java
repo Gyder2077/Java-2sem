@@ -14,6 +14,13 @@ public class Event {
         this.id = id;
     }
 
+    public Event(long id, String name, ZonedDateTime date, EventType eventType) {
+        this.id = id;
+        setName(name);
+        setDate(date);
+        setEventType(eventType);
+    }
+
     public long getId() {return id;}
 
     public void setName(String name) {

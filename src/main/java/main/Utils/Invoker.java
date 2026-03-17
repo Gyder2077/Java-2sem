@@ -3,15 +3,18 @@ package main.Utils;
 import main.Commands.*;
 import main.Given.Enums.TicketType;
 
+import java.io.BufferedReader;
 import java.util.*;
 
 public class Invoker {
     private final Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
     private final MyCollection receiver;
+    private final FileManager fileManager;
 
-    public Invoker(MyCollection myCollection) {
+    public Invoker(MyCollection myCollection, FileManager fileManager) {
         receiver = myCollection;
+        this.fileManager = fileManager;
 
         commands.put("help", new CommandInfo("help", "Shows list of available commands",
                 args -> {
@@ -147,12 +150,18 @@ public class Invoker {
                 }));
 
         commands.put("execute_script", new CommandInfo("execute_script",
-                "Executes commands from the file", args -> new ExecuteScript())); //TODO нормально сделать обработку аргументов
+                    "Executes commands from the file, from environment variable 'SCRIPT_FILE'", args -> {
+                    if (args.length < 1) {
+                        return new ExecuteScript(this);
+                    }
+                    System.out.println("The 'save' command requires no arguments");
+                    return null;
+                }));
 
         commands.put("save", new CommandInfo("save", "Saves the collection to the file",
                 args -> {
                     if (args.length < 1) {
-                        return new Save(receiver);
+                        return new Save(receiver, fileManager);
                     }
                     System.out.println("The 'save' command requires no arguments");
                     return null;
@@ -198,5 +207,38 @@ public class Invoker {
                 receiver.getHistory().addLast(info.name());
             }
         }
+    }
+
+    public boolean runScriptCommand(String input, BufferedReader reader) {
+        String[] parts = input.split("\\s+");
+        String commandName = parts[0].toLowerCase();
+        String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
+
+        CommandInfo info = commands.get(commandName);
+        if (info == null) {
+            System.out.println("Unsupported command. Enter 'help' for info");
+            return true;
+        }
+
+        Command command = info.factory().create(commandArgs);
+        if (command == null) {
+            return true;
+        }
+
+        if (command instanceof Add || command instanceof Update || command instanceof RemoveLower) {
+            command.executeByScript(reader, fileManager);
+        } else if (command instanceof ExecuteScript) {
+            return false;
+        } else {
+            command.execute();
+        }
+
+        if (receiver.getHistory().size() == 8) {
+            receiver.getHistory().addLast(info.name());
+            receiver.getHistory().pollFirst();
+        } else {
+            receiver.getHistory().addLast(info.name());
+        }
+        return true;
     }
 }

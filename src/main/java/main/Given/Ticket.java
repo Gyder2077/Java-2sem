@@ -20,6 +20,18 @@ public class Ticket implements Comparable<Ticket> {
         creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
+    public Ticket(long id, String name, Coordinates coordinates, ZonedDateTime dateTime, int price,
+                  boolean refundable, TicketType ticketType, Event event) {
+        this.id = id;
+        setName(name);
+        setCoordinates(coordinates);
+        this.creationDate = dateTime;
+        setPrice(price);
+        setRefundable(refundable);
+        setType(type);
+        setEvent(event);
+    }
+
     public long getId() {return id;}
 
     public void setName(String name) {

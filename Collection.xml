@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collection>
+  <tickets>
+    <ticket>
+      <id>1</id>
+      <name>123</name>
+      <coordinates>
+         <coordinateX>1.0</coordinateX>
+         <coordinateY>2.0</coordinateY>
+      </coordinates>
+      <creationDate>2026-03-17T05:19:46.291+03:00[Europe/Moscow]</creationDate>
+      <price>123</price>
+      <refundable>false</refundable>
+      <type>null</type>
+      <event>
+         <eventId>1</eventId>
+         <eventName>123</eventName>
+         <date>2023-10-05T14:30+03:00</date>
+         <eventType>OPERA</eventType>
+      </event>
+  </ticket>
+  </tickets>
   <history>
   </history>
-  <creationDate>2026-03-16T19:26:51.437+03:00[Europe/Moscow]</creationDate>
-  <nextId>0</nextId>
+  <creationDate>2026-03-17T05:19:46.291+03:00[Europe/Moscow]</creationDate>
+  <nextId>2</nextId>
 </collection>

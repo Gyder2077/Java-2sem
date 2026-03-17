@@ -6,7 +6,11 @@ public class Coordinates {
     private Float x; //Поле не может быть null
     private Double y; //Значение поля должно быть больше -231, Поле не может быть null
 
-    public Coordinates() {
+    public Coordinates() {}
+
+    public Coordinates(Float x, Double y) {
+        setX(x);
+        setY(y);
     }
 
     public Float getX() {return x;}

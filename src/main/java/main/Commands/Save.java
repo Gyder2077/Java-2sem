@@ -2,16 +2,18 @@ package main.Commands;
 
 import main.Utils.*;
 
-import java.io.File;
 
 public class Save implements Command {
     private final MyCollection myCollection;
+    private final FileManager fileManager;
 
-    public Save(MyCollection myCollection) {this.myCollection = myCollection;}
+    public Save(MyCollection myCollection, FileManager fileManager) {
+        this.myCollection = myCollection;
+        this.fileManager = fileManager;
+    }
 
     @Override
     public void execute() {
-        FileManager fileManager = new FileManager();
-        if (!fileManager.writeXML(myCollection, new File("Collection.xml"))) System.out.println("Unexpected EROR, please try again");
+        if (!fileManager.writeXML(myCollection)) System.out.println("Unexpected EROR, please try again");
     }
 }
