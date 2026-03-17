@@ -226,7 +226,7 @@ public class Invoker {
         }
 
         if (command instanceof Add || command instanceof Update || command instanceof RemoveLower) {
-            command.executeByScript(reader, fileManager);
+            if (!command.executeByScript(reader, fileManager)) return false;
         } else if (command instanceof ExecuteScript) {
             return false;
         } else {
