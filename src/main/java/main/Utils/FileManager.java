@@ -15,9 +15,17 @@ import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * Класс представляет менеджер для обработки файловых данных
+ */
 public class FileManager {
     public FileManager() {}
 
+    /**
+     * Сохраняет все данные о коллекции в xml файл
+     *
+     * @param collection Коллекция
+     */
     public boolean writeXML(MyCollection collection) {
         String filename = System.getenv("COLLECTION");
         if (filename == null || filename.trim().isEmpty()) {
@@ -73,6 +81,11 @@ public class FileManager {
         }
     }
 
+    /**
+     * Считывает все данные о коллекции из xml файла
+     *
+     * @param myCollection Коллекция
+     */
     public boolean parseXML(MyCollection myCollection) {
         String filename = System.getenv("COLLECTION");
         if (filename == null || filename.trim().isEmpty()) {
@@ -169,6 +182,13 @@ public class FileManager {
         }
     }
 
+    /**
+     * Считывает все поля объекта T из текстового файла по его set методам
+     *
+     * @param instance
+     *
+     * @see FileManager {@link #readField(Object, String, Class, BufferedReader)}
+     */
     public <T> T readObject(T instance, BufferedReader reader) {
         Stream<Method> setterArray = Stream.of(instance.getClass().getMethods())
                 .filter(
@@ -193,6 +213,11 @@ public class FileManager {
         return instance;
     }
 
+    /**
+     * Непосредственная обработка поля некого объекта по его setter
+     *
+     * @see FileManager {@link #readObject(Object, BufferedReader)}
+     */
     private boolean readField(Object instance, String setterName, Class<?> fieldType, BufferedReader reader) {
         Object result = null;
         String parsedInput = "";
@@ -265,6 +290,9 @@ public class FileManager {
         }
     }
 
+    /**
+     * Утилита для упрощения парсинга xml файла
+     */
     private String getTextContent(Element parent, String tagName) {
         NodeList nodeList = parent.getElementsByTagName(tagName);
         if (nodeList.getLength() > 0) {
@@ -273,6 +301,9 @@ public class FileManager {
         return "";
     }
 
+    /**
+     * Утилита для упрощения парсинга xml файла
+     */
     private Element getFirstChildElement(Element parent, String tagName) {
         NodeList list = parent.getElementsByTagName(tagName);
         if (list.getLength() > 0 && list.item(0) instanceof Element) {
@@ -281,6 +312,9 @@ public class FileManager {
         return null;
     }
 
+    /**
+     * Утилита для корректного записи xml файла
+     */
     private String xmlFormat(Object obj) {
         if (obj == null) return "";
         String text = (String) obj;

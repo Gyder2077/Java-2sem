@@ -6,12 +6,18 @@ import main.Given.Enums.TicketType;
 import java.io.BufferedReader;
 import java.util.*;
 
+/**
+ * Класс осуществляющий запуск и корректную работу консольного приложения
+ */
 public class Invoker {
     private final Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
     private final MyCollection receiver;
     private final FileManager fileManager;
 
+    /**
+     * Создание объекта класса и регистрация всех реализованных команд в базе commands
+     */
     public Invoker(MyCollection myCollection, FileManager fileManager) {
         receiver = myCollection;
         this.fileManager = fileManager;
@@ -177,6 +183,9 @@ public class Invoker {
                 }));
     }
 
+    /**
+     * Непосредственный запуск приложения и обработка поступающих из консоли команд
+     */
     public void run() {
         while (true) {
             System.out.print(">> ");
@@ -210,6 +219,14 @@ public class Invoker {
         }
     }
 
+    /**
+     * Обработка команд вызванных при помощи скрипта
+     *
+     * @param input Строка содержащая команду и ее аргументы
+     * @param reader
+     *
+     * @see ExecuteScript
+     */
     public boolean runScriptCommand(String input, BufferedReader reader) {
         String[] parts = input.split("\\s+");
         String commandName = parts[0].toLowerCase();

@@ -2,13 +2,22 @@ package main.Utils;
 
 import main.Given.Ticket;
 
+import java.io.BufferedReader;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Stream;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Класс представляет менеджер для обработки входных данных пользователя данных
+ */
 public class InputManager {
+    /**
+     * Считывает все поля объекта T из потокового ввода по его setter методам
+     *
+     * @see InputManager {@link #parseField(Object, String, Class, Scanner)}
+     */
     public <T> T parseObject(T instance, Scanner scanner) {
         Stream<Method> setterArray = Stream.of(instance.getClass().getMethods())
                 .filter(
@@ -34,6 +43,11 @@ public class InputManager {
         return instance;
     }
 
+    /**
+     * Непосредственная обработка поля некого объекта по его setter методам
+     *
+     * @see InputManager {@link #parseObject(Object, Scanner)}
+     */
     private boolean parseField(Object instance, String setterName, Class<?> fieldType, Scanner scanner) {
         Object result = null;
         String parsedInput = "";

@@ -28,7 +28,7 @@ public class Ticket implements Comparable<Ticket> {
         this.creationDate = dateTime;
         setPrice(price);
         setRefundable(refundable);
-        setType(type);
+        setType(ticketType);
         setEvent(event);
     }
 
@@ -97,13 +97,16 @@ public class Ticket implements Comparable<Ticket> {
 
     @Override
     public String toString() {
-        return String.format("Ticket {id='%d', name='%s', coordinates='%s', creationDate='%s'," +
-                        " price='%d', refundable='%s', type='%s', event='%s'}",
+        return String.format("Ticket {id='%d',\nname='%s',\ncoordinates='%s',\ncreationDate='%s'," +
+                        "price='%d',\nrefundable='%s',\ntype='%s',\nevent='%s'}",
                 id, name, coordinates, creationDate, price, refundable, type, event);
     }
 
     @Override
     public int compareTo(Ticket other) {
-        return Integer.compare(this.price, other.price) + Integer.compare(this.type.ordinal(), other.type.ordinal());
+        if (Integer.compare(this.price, other.price) +
+                Long.compare(this.id, other.id) +
+                CharSequence.compare(this.name, other.name) <= -1) return -1;
+        return 1;
     }
 }
