@@ -40,7 +40,6 @@ public class ExecuteScript implements Command {
                 }
 
                 lineNumber++;
-                boolean success = invoker.runCommand(line, scanner);
                 try {
                     scanner.nextLine();
                 } catch (Exception e) {
@@ -48,6 +47,8 @@ public class ExecuteScript implements Command {
                     System.out.println();
                     break;
                 }
+                boolean success = invoker.runCommand(line, scanner);
+
                 if (!success) {
                     System.out.println("Command execution error " + lineNumber + ". Script was terminated.");
                     break;
