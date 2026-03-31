@@ -16,17 +16,25 @@
       <type>CHEAP</type>
       <event eventId="2" eventName="NAME" date="2023-10-05T11:30:00Z" eventType="BASEBALL"/>
     </ticket>
+    <ticket id="3" name="ticket">
+      <coordinates coordinateX="1243.0" coordinateY="3123.0"/>
+      <creationDate>2026-03-31T12:17:58.358Z</creationDate>
+      <price>123</price>
+      <refundable>true</refundable>
+      <type>VIP</type>
+      <event eventId="0" eventName="event" date="2024-10-05T11:30:00Z" eventType="OPERA"/>
+    </ticket>
   </tickets>
   <history>
-    <command>help</command>
     <command>info</command>
     <command>execute_script</command>
     <command>save</command>
     <command>show</command>
     <command>help</command>
     <command>info</command>
+    <command>add</command>
     <command>execute_script</command>
   </history>
   <creationDate>2026-03-17T02:19:46.291Z</creationDate>
-  <nextId>3</nextId>
+  <nextId>4</nextId>
 </collection>

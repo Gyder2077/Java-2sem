@@ -32,13 +32,22 @@ public class ExecuteScript implements Command {
              BufferedReader bufferedReader = new BufferedReader(reader)) {
             String line;
             int lineNumber = 0;
+            Scanner scanner = new Scanner(Files.newInputStream(Paths.get(filename)));
+            invoker.setScanner(scanner);
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.isEmpty() || line.startsWith("#")) {
                     continue;
                 }
 
                 lineNumber++;
-                boolean success = invoker.runCommand(line, new Scanner(Files.newInputStream(Paths.get(filename))));
+                boolean success = invoker.runCommand(line, scanner);
+                try {
+                    scanner.nextLine();
+                } catch (Exception e) {
+                    System.out.println("Script executed successfully");
+                    System.out.println();
+                    break;
+                }
                 if (!success) {
                     System.out.println("Command execution error " + lineNumber + ". Script was terminated.");
                     break;
@@ -49,6 +58,7 @@ public class ExecuteScript implements Command {
         } catch (IOException e) {
             System.out.println("Input-output exception: " + e.getMessage());
         } finally {
+            invoker.setScanner(new Scanner(System.in));
             executingScripts.remove(absPath);
         }
     }

@@ -9,7 +9,7 @@ import java.util.*;
  * Класс осуществляющий запуск и корректную работу консольного приложения
  */
 public class Invoker {
-    private final Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
     private final MyCollection receiver;
     private final Set<String> executingScripts = new HashSet<>();
@@ -179,6 +179,10 @@ public class Invoker {
                     System.out.println("The 'exit' command requires no arguments");
                     return null;
                 }));
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     /**
