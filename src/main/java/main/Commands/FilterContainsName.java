@@ -3,6 +3,9 @@ package main.Commands;
 import main.Utils.Command;
 import main.Utils.MyCollection;
 
+/**
+ * Класс команда для вывода отфильтрованных по полю name объектов
+ */
 public class FilterContainsName implements Command {
     private final String name;
     private final MyCollection myCollection;

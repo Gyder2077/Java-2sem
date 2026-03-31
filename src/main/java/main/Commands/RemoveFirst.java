@@ -4,6 +4,9 @@ import main.Given.Ticket;
 import main.Utils.Command;
 import main.Utils.MyCollection;
 
+/**
+ * Класс команда для удаления первого элемента коллекции
+ */
 public class RemoveFirst implements Command {
     private final MyCollection myCollection;
 

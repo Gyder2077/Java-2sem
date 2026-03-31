@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Класс команда для изменения значений полей объекта коллекции по его id
+ */
 public class Update implements Command {
     private final MyCollection myCollection;
     private final long id;

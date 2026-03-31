@@ -2,6 +2,9 @@ package main.Commands;
 
 import main.Utils.*;
 
+/**
+ * Класс команда для удаления элемента по его id
+ */
 public class RemoveById implements Command {
     private final MyCollection myCollection;
     private final long id;

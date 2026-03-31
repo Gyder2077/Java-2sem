@@ -2,7 +2,9 @@ package main.Commands;
 
 import main.Utils.*;
 
-
+/**
+ * Класс команда для сохранения коллекции и некоторых других данных в файл Collection.xml
+ */
 public class Save implements Command {
     private final MyCollection myCollection;
     private final FileManager fileManager;

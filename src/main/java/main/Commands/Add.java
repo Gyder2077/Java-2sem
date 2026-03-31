@@ -6,6 +6,9 @@ import main.Utils.*;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Класс команда для добавления объекта в коллекцию
+ */
 public class Add implements Command {
     private final MyCollection myCollection;
     private final Scanner scanner;

@@ -3,6 +3,9 @@ package main.Commands;
 import main.Utils.*;
 import java.util.*;
 
+/**
+ * Класс команда для вывода справки о существующих командах
+ */
 public class Help implements Command {
     private final Map<String, CommandInfo> commands;
 

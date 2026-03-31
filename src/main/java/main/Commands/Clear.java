@@ -3,6 +3,9 @@ package main.Commands;
 import main.Utils.Command;
 import main.Utils.MyCollection;
 
+/**
+ * Класс команда для отчистки коллекции
+ */
 public class Clear implements Command {
     private final MyCollection myCollection;
 

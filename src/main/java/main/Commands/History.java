@@ -4,6 +4,9 @@ import main.Utils.Command;
 
 import java.util.ArrayDeque;
 
+/**
+ * Класс команда для вывода последних 8 использованных команд
+ */
 public class History implements Command {
     private final ArrayDeque<String> history;
 

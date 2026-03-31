@@ -3,6 +3,9 @@ package main.Commands;
 import main.Given.Enums.TicketType;
 import main.Utils.*;
 
+/**
+ * Класс команда для вывода отфильтрованных по полю type объектов
+ */
 public class FilterLessThanType implements Command {
     private final TicketType type;
     private final MyCollection myCollection;

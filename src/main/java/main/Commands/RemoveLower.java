@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Класс команда для удаления всех элементов коллекции, которые меньше заданного
+ */
 public class RemoveLower implements Command {
     private final MyCollection myCollection;
     private final Scanner scanner;

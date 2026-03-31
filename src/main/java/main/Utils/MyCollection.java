@@ -9,6 +9,9 @@ import java.util.*;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+/**
+ * Класс коллекция объектов
+ */
 @JacksonXmlRootElement(localName = "collection")
 public class MyCollection {
     @JsonDeserialize(as = ArrayDeque.class)

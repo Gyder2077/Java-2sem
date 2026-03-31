@@ -2,6 +2,9 @@ package main.Commands;
 
 import main.Utils.*;
 
+/**
+ * Класс команда для вывода информации о коллекции
+ */
 public class Info implements Command {
     private final MyCollection coll;
 

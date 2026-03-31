@@ -186,7 +186,7 @@ public class Invoker {
     }
 
     /**
-     * Непосредственный запуск приложения и обработка поступающих из консоли команд
+     * Непосредственный запуск приложения
      */
     public void run() {
         while (true) {
@@ -194,12 +194,14 @@ public class Invoker {
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) continue;
 
-            runCommand(input, scanner);
+            runCommand(input);
         }
     }
 
-
-    public boolean runCommand(String input, Scanner scanner) {
+    /**
+     * Обработка поступающих из консоли/скрипта команд
+     */
+    public boolean runCommand(String input) {
         String[] parts = input.split("\\s+");
         String commandName = parts[0].toLowerCase();
         String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);

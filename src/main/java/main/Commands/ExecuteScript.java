@@ -7,6 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 
+/**
+ * Класс команда для запуска других команд из скрипта
+ */
 public class ExecuteScript implements Command {
     private final Invoker invoker;
     private final String filename;
@@ -47,7 +50,7 @@ public class ExecuteScript implements Command {
                     System.out.println();
                     break;
                 }
-                boolean success = invoker.runCommand(line, scanner);
+                boolean success = invoker.runCommand(line);
 
                 if (!success) {
                     System.out.println("Command execution error " + lineNumber + ". Script was terminated.");
