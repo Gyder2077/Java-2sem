@@ -16,6 +16,7 @@ public class MyCollection {
     @JacksonXmlElementWrapper(localName = "tickets")
     private ArrayDeque<Ticket> myCollection = new ArrayDeque<>();
 
+    @JsonDeserialize(as = ArrayDeque.class)
     @JacksonXmlProperty(localName = "command")
     @JacksonXmlElementWrapper(localName = "history")
     private ArrayDeque<String> history = new ArrayDeque<>();

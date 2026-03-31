@@ -21,7 +21,11 @@
     <command>show</command>
     <command>add</command>
     <command>show</command>
-    <command>add</command>
+    <command>save</command>
+    <command>show</command>
+    <command>help</command>
+    <command>info</command>
+    <command>execute_script</command>
   </history>
   <creationDate>2026-03-17T02:19:46.291Z</creationDate>
   <nextId>3</nextId>

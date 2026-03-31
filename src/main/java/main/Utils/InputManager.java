@@ -13,12 +13,27 @@ import java.time.format.DateTimeParseException;
  * Класс представляет менеджер для обработки входных данных пользователя данных
  */
 public class InputManager {
+    private Scanner scanner;
+    private static InputManager instance;
+
+    private InputManager() {
+    }
+
+    public static InputManager getInstance() {
+        if (Objects.isNull(instance)) instance = new InputManager();
+        return instance;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     /**
      * Считывает все поля объекта T из потокового ввода по его setter методам
      *
-     * @see InputManager {@link #parseField(Object, String, Class, Scanner)}
+     * @see InputManager {@link #parseField(Object, String, Class)}
      */
-    public <T> T parseObject(T instance, Scanner scanner) {
+    public <T> T parseObject(T instance) {
         Stream<Method> setterArray = Stream.of(instance.getClass().getMethods())
                 .filter(
                         e ->
@@ -33,9 +48,9 @@ public class InputManager {
             Class<?> tmpFieldType = tmpSetter.getParameterTypes()[0];
             while (true) {
                 try {
-                    if (parseField(instance, tmpSetterName, tmpFieldType, scanner)) break;
+                    if (parseField(instance, tmpSetterName, tmpFieldType)) break;
                 } catch (RuntimeException e) {
-                    System.out.println("Unexpected EROR, please try again later");
+                    System.out.println("Unexpected ERROR, please try again later");
                     return null;
                 }
             }
@@ -46,9 +61,9 @@ public class InputManager {
     /**
      * Непосредственная обработка поля некого объекта по его setter методам
      *
-     * @see InputManager {@link #parseObject(Object, Scanner)}
+     * @see InputManager {@link #parseObject(Object)}
      */
-    private boolean parseField(Object instance, String setterName, Class<?> fieldType, Scanner scanner) {
+    private boolean parseField(Object instance, String setterName, Class<?> fieldType) {
         Object result = null;
         String parsedInput = "";
         Method setterMethod;
@@ -136,7 +151,7 @@ public class InputManager {
                 throw new RuntimeException("Unexpected EROR");
             }
         }
-        parseObject(tmpObject, scanner);
+        parseObject(tmpObject);
         try {
             setterMethod.invoke(instance, tmpObject);
             return true;

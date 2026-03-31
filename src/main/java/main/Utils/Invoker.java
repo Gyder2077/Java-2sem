@@ -3,24 +3,22 @@ package main.Utils;
 import main.Commands.*;
 import main.Given.Enums.TicketType;
 
-import java.io.BufferedReader;
 import java.util.*;
 
 /**
  * Класс осуществляющий запуск и корректную работу консольного приложения
  */
 public class Invoker {
-    private final Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
     private final MyCollection receiver;
-    private final FileManager fileManager;
+    private final Set<String> executingScripts = new HashSet<>();
 
     /**
      * Создание объекта класса и регистрация всех реализованных команд в базе commands
      */
     public Invoker(MyCollection myCollection, FileManager fileManager) {
         receiver = myCollection;
-        this.fileManager = fileManager;
 
         commands.put("help", new CommandInfo("help", "Shows list of available commands",
                 args -> {
@@ -157,10 +155,10 @@ public class Invoker {
 
         commands.put("execute_script", new CommandInfo("execute_script",
                     "Executes commands from the file, from environment variable 'SCRIPT_FILE'", args -> {
-                    if (args.length < 1) {
-                        return new ExecuteScript(this);
+                    if (args.length == 1) {
+                        return new ExecuteScript(this, args[0], executingScripts);
                     }
-                    System.out.println("The 'save' command requires no arguments");
+                    System.out.println("One argument 'filename' is required");
                     return null;
                 }));
 
@@ -183,6 +181,11 @@ public class Invoker {
                 }));
     }
 
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     /**
      * Непосредственный запуск приложения и обработка поступающих из консоли команд
      */
@@ -192,42 +195,12 @@ public class Invoker {
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) continue;
 
-            String[] parts = input.split("\\s+");
-            String commandName = parts[0].toLowerCase();
-            String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
-
-            CommandInfo info = commands.get(commandName);
-            if (info == null) {
-                System.out.println("Unsupported command. Enter 'help' for info");
-                continue;
-            }
-
-            Command command = info.factory().create(commandArgs);
-            if (command == null) {
-                continue;
-            }
-
-            command.execute();
-
-            if (receiver.getHistory().size() == 8) {
-                receiver.getHistory().addLast(info.name());
-                receiver.getHistory().pollFirst();
-            } else {
-                receiver.getHistory().addLast(info.name());
-            }
-            System.out.println();
+            runCommand(input);
         }
     }
 
-    /**
-     * Обработка команд вызванных при помощи скрипта
-     *
-     * @param input Строка содержащая команду и ее аргументы
-     * @param reader
-     *
-     * @see ExecuteScript
-     */
-    public boolean runScriptCommand(String input, BufferedReader reader) {
+
+    public boolean runCommand(String input) {
         String[] parts = input.split("\\s+");
         String commandName = parts[0].toLowerCase();
         String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
@@ -235,23 +208,18 @@ public class Invoker {
         CommandInfo info = commands.get(commandName);
         if (info == null) {
             System.out.println("Unsupported command. Enter 'help' for info");
-            return true;
+            return false;
         }
 
         Command command = info.factory().create(commandArgs);
         if (command == null) {
-            return true;
+            return false;
         }
 
         System.out.println("Executing command: " + info.name());
         System.out.println();
-        if (command instanceof Add || command instanceof Update || command instanceof RemoveLower) {
-            if (!command.executeByScript(reader, fileManager)) return false;
-        } else if (command instanceof ExecuteScript) {
-            return false;
-        } else {
-            command.execute();
-        }
+        command.execute();
+
 
         if (receiver.getHistory().size() == 8) {
             receiver.getHistory().addLast(info.name());

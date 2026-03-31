@@ -4,39 +4,49 @@ import main.Utils.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.*;
 
 public class ExecuteScript implements Command {
     private final Invoker invoker;
+    private final String filename;
+    private final Set<String> executingScripts;
 
-    public ExecuteScript(Invoker invoker) {this.invoker = invoker;}
+    public ExecuteScript(Invoker invoker, String filename, Set<String> executingScripts) {
+        this.invoker = invoker;
+        this.filename = filename;
+        this.executingScripts = executingScripts;
+    }
 
     @Override
     public void execute() {
-        String filename = System.getenv("SCRIPT_FILE");
-        if (filename == null || filename.trim().isEmpty()) {
-            filename = "script.txt";
-            System.out.println("Environment variable 'SCRIPT_FILE' was not set. Using default file: " + filename);
-        } else System.out.println("Using file from environment: " + filename);
+        String absPath = new File(filename).getAbsolutePath();
+        if (executingScripts.contains(absPath)) {
+            System.out.println("ERROR: Recursive script call");
+            return;
+        }
 
-        try (InputStreamReader reader = new InputStreamReader(
-                new FileInputStream(filename), StandardCharsets.UTF_8);
+        executingScripts.add(absPath);
+
+        try (InputStreamReader reader = new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
-
             String line;
             int lineNumber = 0;
+            invoker.setScanner(new Scanner(Files.newInputStream(Paths.get(filename))));
             while ((line = bufferedReader.readLine()) != null) {
                 lineNumber++;
-                boolean success = invoker.runScriptCommand(line, bufferedReader);
+                boolean success = invoker.runCommand(line);
                 if (!success) {
                     System.out.println("Command execution error " + lineNumber + ". Script was terminated.");
                     break;
                 }
             }
-
         } catch (FileNotFoundException e) {
-            System.out.println("EROR: script file not found: " + filename);
+            System.out.println("ERROR: script file not found: " + filename);
         } catch (IOException e) {
             System.out.println("Input-output exception: " + e.getMessage());
+        } finally {
+            executingScripts.remove(absPath);
         }
     }
 }

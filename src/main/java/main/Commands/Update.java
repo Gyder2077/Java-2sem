@@ -30,7 +30,9 @@ public class Update implements Command {
         while (iterator.hasNext()) {
             Ticket t = iterator.next();
             if (t.getId() == id) {
-                toUpdate = new InputManager().parseObject(t, scanner);
+                InputManager inputManager = InputManager.getInstance();
+                inputManager.setScanner(scanner);
+                toUpdate = inputManager.parseObject(t);
                 if (Objects.isNull(toUpdate)) {
                     return;
                 }
@@ -39,27 +41,5 @@ public class Update implements Command {
                 break;
             }
         }
-    }
-
-    @Override
-    public boolean executeByScript(BufferedReader reader, FileManager fileManager) {
-        if (myCollection.getMyCollection().isEmpty()) {
-            return false;
-        }
-        Ticket toUpdate;
-        Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
-        while (iterator.hasNext()) {
-            Ticket t = iterator.next();
-            if (t.getId() == id) {
-                toUpdate = fileManager.readObject(t, reader);
-                if (Objects.isNull(toUpdate)) {
-                    return false;
-                }
-                iterator.remove();
-                myCollection.addElement(toUpdate);
-                break;
-            }
-        }
-        return false;
     }
 }

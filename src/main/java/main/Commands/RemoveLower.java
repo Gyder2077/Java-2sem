@@ -23,7 +23,9 @@ public class RemoveLower implements Command {
             System.out.println("The collection is empty");
             return;
         }
-        Ticket removeLower = new InputManager().parseObject(new Ticket(0), scanner);
+        InputManager inputManager = InputManager.getInstance();
+        inputManager.setScanner(scanner);
+        Ticket removeLower = inputManager.parseObject(new Ticket(0));
         if (Objects.isNull(removeLower)) {
             return;
         }
@@ -37,27 +39,5 @@ public class RemoveLower implements Command {
             }
         }
         System.out.printf("Total of %d element were removed from the collection%n", counter);
-    }
-
-    @Override
-    public boolean executeByScript(BufferedReader reader, FileManager fileManager) {
-        if (myCollection.getMyCollection().isEmpty()) {
-            return false;
-        }
-        Ticket removeLower = fileManager.readObject(new Ticket(0), reader);
-        if (Objects.isNull(removeLower)) {
-            return false;
-        }
-        long counter = 0;
-        Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
-        while (iterator.hasNext()) {
-            Ticket t = iterator.next();
-            if (t.compareTo(removeLower) < 0) {
-                counter++;
-                iterator.remove();
-            }
-        }
-        System.out.printf("Total of %d element were removed from the collection%n", counter);
-        return true;
     }
 }
