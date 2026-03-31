@@ -133,9 +133,6 @@ public class Ticket implements Comparable<Ticket> {
 
     @Override
     public int compareTo(Ticket other) {
-        if (Integer.compare(this.price, other.price) +
-                Long.compare(this.id, other.id) +
-                CharSequence.compare(this.name, other.name) <= -1) return -1;
-        return 1;
+        return Integer.compare(this.price, other.price);
     }
 }

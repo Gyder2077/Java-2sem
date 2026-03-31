@@ -8,14 +8,6 @@
       <type/>
       <event eventId="1" eventName="123" date="2023-10-05T11:30:00Z" eventType="OPERA"/>
     </ticket>
-    <ticket id="2" name="Baseball ticket">
-      <coordinates coordinateX="2.0" coordinateY="1.0"/>
-      <creationDate>2026-03-31T00:31:23.683Z</creationDate>
-      <price>12345</price>
-      <refundable>true</refundable>
-      <type>CHEAP</type>
-      <event eventId="2" eventName="NAME" date="2023-10-05T11:30:00Z" eventType="BASEBALL"/>
-    </ticket>
     <ticket id="3" name="ticket">
       <coordinates coordinateX="1243.0" coordinateY="3123.0"/>
       <creationDate>2026-03-31T12:17:58.358Z</creationDate>
@@ -24,17 +16,33 @@
       <type>VIP</type>
       <event eventId="0" eventName="event" date="2024-10-05T11:30:00Z" eventType="OPERA"/>
     </ticket>
+    <ticket id="4" name="dfjhsk">
+      <coordinates coordinateX="12.0" coordinateY="21.0"/>
+      <creationDate>2026-03-31T19:05:20.694+03:00</creationDate>
+      <price>9876</price>
+      <refundable>true</refundable>
+      <type/>
+      <event eventId="0" eventName="jads" date="2023-10-05T14:30:00+03:00" eventType="OPERA"/>
+    </ticket>
+    <ticket id="2" name="Baseball ticket">
+      <coordinates coordinateX="2.0" coordinateY="1.0"/>
+      <creationDate>2026-03-31T00:31:23.683Z</creationDate>
+      <price>12345</price>
+      <refundable>true</refundable>
+      <type>CHEAP</type>
+      <event eventId="2" eventName="NAME" date="2023-10-05T11:30:00Z" eventType="BASEBALL"/>
+    </ticket>
   </tickets>
   <history>
     <command>info</command>
-    <command>execute_script</command>
-    <command>save</command>
-    <command>show</command>
-    <command>help</command>
-    <command>info</command>
     <command>add</command>
     <command>execute_script</command>
+    <command>show</command>
+    <command>show</command>
+    <command>show</command>
+    <command>add</command>
+    <command>show</command>
   </history>
   <creationDate>2026-03-17T02:19:46.291Z</creationDate>
-  <nextId>4</nextId>
+  <nextId>5</nextId>
 </collection>
