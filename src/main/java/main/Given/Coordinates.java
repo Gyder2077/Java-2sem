@@ -3,6 +3,9 @@ package main.Given;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import java.util.Objects;
 
+/**
+ * Подкласс, хранящийся в коллекции
+ */
 public class Coordinates {
     @JacksonXmlProperty(isAttribute = true)
     private Float coordinateX; //Поле не может быть null

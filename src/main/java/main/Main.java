@@ -4,6 +4,9 @@ import main.Utils.*;
 
 import java.util.Objects;
 
+/**
+ * Запускаемый класс
+ */
 public class Main {
     public static void main(String[] args) {
         FileManager fileManager = new FileManager();

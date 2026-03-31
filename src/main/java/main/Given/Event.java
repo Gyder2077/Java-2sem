@@ -5,6 +5,9 @@ import main.Given.Enums.*;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+/**
+ * Подкласс, хранящийся в коллекции
+ */
 public class Event {
     @JacksonXmlProperty(isAttribute = true)
     private long eventId; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически

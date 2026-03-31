@@ -6,6 +6,9 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
+/**
+ * Главный класс, который хранит коллекция
+ */
 public class Ticket implements Comparable<Ticket> {
     @JacksonXmlProperty(isAttribute = true)
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
