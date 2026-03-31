@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <collection>
   <tickets>
-    <ticket>
-      <id>1</id>
-      <name>123</name>
-      <coordinates>
-         <coordinateX>1.0</coordinateX>
-         <coordinateY>2.0</coordinateY>
-      </coordinates>
-      <creationDate>2026-03-17T05:19:46.291+03:00[Europe/Moscow]</creationDate>
+    <ticket id="1" name="123">
+      <coordinates coordinateX="1.0" coordinateY="2.0"/>
+      <creationDate>2026-03-17T02:19:46.291Z</creationDate>
       <price>123</price>
       <refundable>false</refundable>
-      <type>null</type>
-      <event>
-         <eventId>1</eventId>
-         <eventName>123</eventName>
-         <date>2023-10-05T14:30+03:00</date>
-         <eventType>OPERA</eventType>
-      </event>
-  </ticket>
+      <type/>
+      <event eventId="1" eventName="123" date="2023-10-05T11:30:00Z" eventType="OPERA"/>
+    </ticket>
+    <ticket id="2" name="Baseball ticket">
+      <coordinates coordinateX="2.0" coordinateY="1.0"/>
+      <creationDate>2026-03-31T00:31:23.683Z</creationDate>
+      <price>12345</price>
+      <refundable>true</refundable>
+      <type>CHEAP</type>
+      <event eventId="2" eventName="NAME" date="2023-10-05T11:30:00Z" eventType="BASEBALL"/>
+    </ticket>
   </tickets>
   <history>
+    <command>show</command>
+    <command>add</command>
+    <command>show</command>
+    <command>add</command>
   </history>
-  <creationDate>2026-03-17T05:19:46.291+03:00[Europe/Moscow]</creationDate>
-  <nextId>2</nextId>
+  <creationDate>2026-03-17T02:19:46.291Z</creationDate>
+  <nextId>3</nextId>
 </collection>

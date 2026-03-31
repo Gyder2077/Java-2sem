@@ -6,21 +6,34 @@ import main.Given.Ticket;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JacksonXmlRootElement(localName = "collection")
 public class MyCollection {
+    @JsonDeserialize(as = ArrayDeque.class)
+    @JacksonXmlProperty(localName = "ticket")
+    @JacksonXmlElementWrapper(localName = "tickets")
     private ArrayDeque<Ticket> myCollection = new ArrayDeque<>();
+
+    @JacksonXmlProperty(localName = "command")
+    @JacksonXmlElementWrapper(localName = "history")
     private ArrayDeque<String> history = new ArrayDeque<>();
-    private ZonedDateTime dateTime;
-    private long nextId = 1;
+
+    @JacksonXmlProperty(localName = "creationDate")
+    private ZonedDateTime creationDate;
+
+    @JacksonXmlProperty(localName = "nextId")
+    private long nextId;
 
     public MyCollection() {
-        dateTime = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
-    public void setDateTime(ZonedDateTime dateTime) {this.dateTime = dateTime;}
+    public void setCreationDate(ZonedDateTime creationDate) {this.creationDate = creationDate;}
 
-    public ZonedDateTime getDateTime() {
-        return dateTime;
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
     }
 
     public void setHistory(ArrayDeque<String> history) {this.history = history;}

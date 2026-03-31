@@ -10,6 +10,6 @@ public class Info implements Command {
     @Override
     public void execute() {
         System.out.printf("Collection type: %s%nCollection size: %d%nCreation date: %s%n",
-                coll.getMyCollection().getClass().getName(), coll.getMyCollection().size(), coll.getDateTime());
+                coll.getMyCollection().getClass().getName(), coll.getMyCollection().size(), coll.getCreationDate());
     }
 }

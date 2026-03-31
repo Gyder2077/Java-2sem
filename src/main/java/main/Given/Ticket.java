@@ -1,19 +1,37 @@
 package main.Given;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import main.Given.Enums.TicketType;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Ticket implements Comparable<Ticket> {
-    private final long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @JacksonXmlProperty(isAttribute = true)
+    private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+
+    @JacksonXmlProperty(isAttribute = true)
     private String name; //Поле не может быть null, Строка не может быть пустой
+
+    @JacksonXmlProperty(isAttribute = true)
     private Coordinates coordinates; //Поле не может быть null
-    private final java.time.ZonedDateTime creationDate; // Поле не может быть null, Значение этого поля должно генерироваться автоматически
+
+    @JacksonXmlProperty(isAttribute = true)
+    private java.time.ZonedDateTime creationDate; // Поле не может быть null, Значение этого поля должно генерироваться автоматически
+
+    @JacksonXmlProperty(isAttribute = true)
     private int price; //Значение поля должно быть больше 0
+
+    @JacksonXmlProperty(isAttribute = true)
     private boolean refundable;
+
+    @JacksonXmlProperty(isAttribute = true)
     private TicketType type; //Поле может быть null
+
+    @JacksonXmlProperty(isAttribute = true)
     private Event event; //Поле не может быть null
+
+    public Ticket() {}
 
     public Ticket(long id) {
         this.id = id;
@@ -81,7 +99,6 @@ public class Ticket implements Comparable<Ticket> {
 
     public ZonedDateTime getCreationDate() {return creationDate;}
 
-
     @Override
     public int hashCode() {return Objects.hash(id, name, coordinates, creationDate, price, refundable, type, event);}
 
@@ -97,8 +114,17 @@ public class Ticket implements Comparable<Ticket> {
 
     @Override
     public String toString() {
-        return String.format("Ticket {id='%d',\nname='%s',\ncoordinates='%s',\ncreationDate='%s'," +
-                        "price='%d',\nrefundable='%s',\ntype='%s',\nevent='%s'}",
+        return String.format("""
+                        {
+                            id='%d',
+                            name='%s',
+                            coordinates='%s',
+                            creationDate='%s',
+                            price='%d',
+                            refundable='%s',
+                            type='%s',
+                            event='%s'
+                        }""",
                 id, name, coordinates, creationDate, price, refundable, type, event);
     }
 

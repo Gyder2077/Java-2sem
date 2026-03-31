@@ -1,33 +1,37 @@
 package main.Given;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import java.util.Objects;
 
 public class Coordinates {
-    private Float x; //Поле не может быть null
-    private Double y; //Значение поля должно быть больше -231, Поле не может быть null
+    @JacksonXmlProperty(isAttribute = true)
+    private Float coordinateX; //Поле не может быть null
+
+    @JacksonXmlProperty(isAttribute = true)
+    private Double coordinateY; //Значение поля должно быть больше -231, Поле не может быть null
 
     public Coordinates() {}
 
     public Coordinates(Float x, Double y) {
-        setX(x);
-        setY(y);
+        setCoordinateX(x);
+        setCoordinateY(y);
     }
 
-    public Float getX() {return x;}
+    public Float getCoordinateX() {return coordinateX;}
 
-    public Double getY() {return y;}
+    public Double getCoordinateY() {return coordinateY;}
 
-    public void setX(Float x) {
-        if (!(x == null)) {
-            this.x = x;
+    public void setCoordinateX(Float coordinateX) {
+        if (!(coordinateX == null)) {
+            this.coordinateX = coordinateX;
             return;
         }
         throw new IllegalArgumentException("X Coordinates should not be null");
     }
 
-    public void setY(Double y) {
-        if (!(y == null || y <= -231.0)) {
-        this.y = y;
+    public void setCoordinateY(Double coordinateY) {
+        if (!(coordinateY == null || coordinateY <= -231.0)) {
+        this.coordinateY = coordinateY;
         return;
         }
         throw new IllegalArgumentException("Y Coordinates must be more than -231");
@@ -35,18 +39,18 @@ public class Coordinates {
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(coordinateX, coordinateY);
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj.getClass() != getClass()) {return false;}
         Coordinates that = (Coordinates) obj;
-        return super.equals(obj) && Objects.equals(that.y, y) && Objects.equals(that.x, x);
+        return super.equals(obj) && Objects.equals(that.coordinateY, coordinateY) && Objects.equals(that.coordinateX, coordinateX);
     }
 
     @Override
     public String toString() {
-        return String.format("Coordinates {x = %s, y = %s}", x, y);
+        return String.format("Coordinates {coordinateX = %s, coordinateY = %s}", coordinateX, coordinateY);
     }
 }
