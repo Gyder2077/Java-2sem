@@ -32,10 +32,13 @@ public class ExecuteScript implements Command {
              BufferedReader bufferedReader = new BufferedReader(reader)) {
             String line;
             int lineNumber = 0;
-            invoker.setScanner(new Scanner(Files.newInputStream(Paths.get(filename))));
             while ((line = bufferedReader.readLine()) != null) {
+                if (line.isEmpty() || line.startsWith("#")) {
+                    continue;
+                }
+
                 lineNumber++;
-                boolean success = invoker.runCommand(line);
+                boolean success = invoker.runCommand(line, new Scanner(Files.newInputStream(Paths.get(filename))));
                 if (!success) {
                     System.out.println("Command execution error " + lineNumber + ". Script was terminated.");
                     break;

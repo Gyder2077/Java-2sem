@@ -2,3 +2,13 @@ save
 show
 help
 info
+add
+1243
+3123
+2024-10-05T14:30:00+03:00
+event
+OPERA
+ticket
+123
+true
+VIP

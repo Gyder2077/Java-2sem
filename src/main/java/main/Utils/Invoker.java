@@ -9,7 +9,7 @@ import java.util.*;
  * Класс осуществляющий запуск и корректную работу консольного приложения
  */
 public class Invoker {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
     private final MyCollection receiver;
     private final Set<String> executingScripts = new HashSet<>();
@@ -181,11 +181,6 @@ public class Invoker {
                 }));
     }
 
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
     /**
      * Непосредственный запуск приложения и обработка поступающих из консоли команд
      */
@@ -195,12 +190,12 @@ public class Invoker {
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) continue;
 
-            runCommand(input);
+            runCommand(input, scanner);
         }
     }
 
 
-    public boolean runCommand(String input) {
+    public boolean runCommand(String input, Scanner scanner) {
         String[] parts = input.split("\\s+");
         String commandName = parts[0].toLowerCase();
         String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);

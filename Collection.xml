@@ -18,9 +18,9 @@
     </ticket>
   </tickets>
   <history>
-    <command>show</command>
-    <command>add</command>
-    <command>show</command>
+    <command>help</command>
+    <command>info</command>
+    <command>execute_script</command>
     <command>save</command>
     <command>show</command>
     <command>help</command>
