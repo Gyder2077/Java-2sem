@@ -1,15 +1,21 @@
-package main.Given;
+package main.Model;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import main.Given.Enums.TicketType;
+import main.Model.Enums.TicketType;
+
+import java.io.Serial;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.io.Serializable;
 
 /**
  * Главный класс, который хранит коллекция
  */
-public class Ticket implements Comparable<Ticket> {
+public class Ticket implements Comparable<Ticket>, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @JacksonXmlProperty(isAttribute = true)
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
@@ -54,6 +60,10 @@ public class Ticket implements Comparable<Ticket> {
     }
 
     public long getId() {return id;}
+
+    public void idSetter(long id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         if (Objects.isNull(name) || name.isEmpty()) {

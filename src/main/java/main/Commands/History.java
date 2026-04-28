@@ -1,27 +1,34 @@
 package main.Commands;
 
-import main.Utils.Command;
+import main.Server.MyCollection;
+import main.Utils.*;
 
-import java.util.ArrayDeque;
+import java.io.Serial;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Класс команда для вывода последних 8 использованных команд
  */
 public class History implements Command {
-    private final ArrayDeque<String> history;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public History(ArrayDeque<String> history) {this.history = history;}
+    public History() {}
+
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
+        ArrayDeque<String> history = myCollection.getHistory();
         if (history.isEmpty()) {
-            System.out.println("You have never used any commands");
-            return;
+            return new Response("You have never used any commands");
         }
-        int i = 0;
-        System.out.println("Last used commands:");
-        for (String command : history) {
-            System.out.printf("%d - %s%n", ++i, command);
-        }
+        StringBuilder response = new StringBuilder();
+        response.append("Last used commands:\n");
+        AtomicInteger i = new AtomicInteger(1);
+        history.stream().forEach(command ->
+                response.append(String.format("%d - %s%n", i.getAndIncrement(), command))
+        );
+        return new Response(response.toString());
     }
 }

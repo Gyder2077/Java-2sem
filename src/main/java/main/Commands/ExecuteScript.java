@@ -1,5 +1,7 @@
 package main.Commands;
 
+import main.Client.ConsoleManager;
+import main.Server.MyCollection;
 import main.Utils.*;
 
 import java.io.*;
@@ -11,18 +13,18 @@ import java.util.*;
  * Класс команда для запуска других команд из скрипта
  */
 public class ExecuteScript implements Command {
-    private final Invoker invoker;
+    private final ConsoleManager consoleManager;
     private final String filename;
     private final Set<String> executingScripts;
 
-    public ExecuteScript(Invoker invoker, String filename, Set<String> executingScripts) {
-        this.invoker = invoker;
+    public ExecuteScript(ConsoleManager consoleManager, String filename, Set<String> executingScripts) {
+        this.consoleManager = consoleManager;
         this.filename = filename;
         this.executingScripts = executingScripts;
     }
 
     @Override
-    public void execute() {
+    public void execute(MyCollection myCollection) {
         String absPath = new File(filename).getAbsolutePath();
         if (executingScripts.contains(absPath)) {
             System.out.println("ERROR: Recursive script call");
@@ -36,7 +38,7 @@ public class ExecuteScript implements Command {
             String line;
             int lineNumber = 0;
             Scanner scanner = new Scanner(Files.newInputStream(Paths.get(filename)));
-            invoker.setScanner(scanner);
+            consoleManager.setScanner(scanner);
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.isEmpty() || line.startsWith("#")) {
                     continue;
@@ -50,7 +52,7 @@ public class ExecuteScript implements Command {
                     System.out.println();
                     break;
                 }
-                boolean success = invoker.runCommand(line);
+                boolean success = consoleManager.runCommand(line);
 
                 if (!success) {
                     System.out.println("Command execution error " + lineNumber + ". Script was terminated.");
@@ -62,7 +64,7 @@ public class ExecuteScript implements Command {
         } catch (IOException e) {
             System.out.println("Input-output exception: " + e.getMessage());
         } finally {
-            invoker.setScanner(new Scanner(System.in));
+            consoleManager.setScanner(new Scanner(System.in));
             executingScripts.remove(absPath);
         }
     }

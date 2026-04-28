@@ -1,9 +1,11 @@
 package main.Commands;
 
-import main.Given.Ticket;
+import main.Model.Ticket;
 import main.Utils.*;
+import main.Client.InputManager;
+import main.Server.MyCollection;
 
-import java.io.BufferedReader;
+import java.io.Serial;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Scanner;
@@ -12,37 +14,34 @@ import java.util.Scanner;
  * Класс команда для изменения значений полей объекта коллекции по его id
  */
 public class Update implements Command {
-    private final MyCollection myCollection;
-    private final long id;
-    private final Scanner scanner;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public Update(MyCollection myCollection, long id, Scanner scanner) {
-        this.myCollection = myCollection;
+    private final long id;
+    private final Ticket newTicket;
+
+    public Update(long id, Ticket newTicket) {
         this.id = id;
-        this.scanner = scanner;
+        this.newTicket = newTicket;
     }
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
         if (myCollection.getMyCollection().isEmpty()) {
-            System.out.println("The collection is empty");
-            return;
+            return new Response("The collection is empty");
         }
-        Ticket toUpdate;
         Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
         while (iterator.hasNext()) {
             Ticket t = iterator.next();
             if (t.getId() == id) {
-                InputManager inputManager = InputManager.getInstance();
-                inputManager.setScanner(scanner);
-                toUpdate = inputManager.parseObject(t);
-                if (Objects.isNull(toUpdate)) {
-                    return;
+                if (Objects.isNull(newTicket)) {
+                    return new Response("Unable to update element with such id");
                 }
                 iterator.remove();
-                myCollection.addElement(toUpdate);
-                break;
+                myCollection.addElement(newTicket);
+                return new Response("Element updated successfully");
             }
         }
+        return new Response("There is no element with such id in the collection");
     }
 }

@@ -1,9 +1,11 @@
 package main.Commands;
 
-import main.Given.Ticket;
+import main.Model.Ticket;
 import main.Utils.*;
+import main.Client.InputManager;
+import main.Server.MyCollection;
 
-import java.io.BufferedReader;
+import java.io.Serial;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Scanner;
@@ -12,35 +14,32 @@ import java.util.Scanner;
  * Класс команда для удаления всех элементов коллекции, которые меньше заданного
  */
 public class RemoveLower implements Command {
-    private final MyCollection myCollection;
-    private final Scanner scanner;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public RemoveLower(MyCollection myCollection, Scanner scanner) {
-        this.myCollection = myCollection;
-        this.scanner = scanner;
+    private final Ticket ticket;
+
+    public RemoveLower(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
         if (myCollection.getMyCollection().isEmpty()) {
-            System.out.println("The collection is empty");
-            return;
+            return new Response("The collection is empty");
         }
-        InputManager inputManager = InputManager.getInstance();
-        inputManager.setScanner(scanner);
-        Ticket removeLower = inputManager.parseObject(new Ticket(0));
-        if (Objects.isNull(removeLower)) {
-            return;
+        if (Objects.isNull(ticket)) {
+            return new Response("Unexpected ERROR, try again later!");
         }
         long counter = 0;
         Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
         while (iterator.hasNext()) {
             Ticket t = iterator.next();
-            if (t.compareTo(removeLower) < 0) {
+            if (t.compareTo(ticket) < 0) {
                 counter++;
                 iterator.remove();
             }
         }
-        System.out.printf("Total of %d element were removed from the collection%n", counter);
+        return new Response(String.format("Total of %d element were removed from the collection%n", counter));
     }
 }

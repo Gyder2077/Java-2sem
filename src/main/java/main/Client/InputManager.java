@@ -1,8 +1,7 @@
-package main.Utils;
+package main.Client;
 
-import main.Given.Ticket;
+import main.Model.*;
 
-import java.io.BufferedReader;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Stream;
@@ -50,7 +49,7 @@ public class InputManager {
                 try {
                     if (parseField(instance, tmpSetterName, tmpFieldType)) break;
                 } catch (RuntimeException e) {
-                    System.out.println("Unexpected ERROR, please try again later");
+                    System.out.print(e.getMessage() + ", please try again\n");
                     return null;
                 }
             }
@@ -76,58 +75,24 @@ public class InputManager {
         System.out.print("Insert value for field " + fieldName + " with type " + fieldType.getSimpleName());
         String output = "\n" + instance.getClass().getSimpleName() + " " + fieldName + ": ";
 
-        try {
-            if (fieldType.equals(int.class) || fieldType.equals(Integer.class)) {
-                System.out.print(output);
-                parsedInput = scanner.nextLine();
-                result = Integer.valueOf(parsedInput.trim());
-            } else if (fieldType.equals(long.class) || fieldType.equals(Long.class)) {
-                System.out.print(output);
-                parsedInput = scanner.nextLine();
-                result = Long.valueOf(parsedInput.trim());
-            } else if (fieldType.equals(double.class) || fieldType.equals(Double.class)) {
-                System.out.print(output);
-                parsedInput = scanner.nextLine();
-                result = Double.valueOf(parsedInput.trim());
-            } else if (fieldType.equals(float.class) || fieldType.equals(Float.class)) {
-                System.out.print(output);
-                parsedInput = scanner.nextLine();
-                result = Float.valueOf(parsedInput.trim());
-            } else if (fieldType.equals(String.class)) {
-                System.out.print(output);
-                parsedInput = scanner.nextLine();
-                result = parsedInput.trim();
-            } else if (fieldType.equals(boolean.class) || fieldType.equals(Boolean.class)) {
-                System.out.print(output);
-                parsedInput = scanner.nextLine().trim();
-                if (parsedInput.equals("false") || parsedInput.equals("true")) result = Boolean.valueOf(parsedInput);
-                else {
-                    System.out.printf("Cannot properly parse string '" + parsedInput +"', the value must be of type '" + fieldType.getSimpleName() + "'. Please try again");
-                    return false;
-                }
-            } else if (fieldType.equals(ZonedDateTime.class)) {
-                System.out.print(" (ISO format, e.g., 2023-10-05T14:30:00+03:00)");
-                System.out.print(output);
-                parsedInput = scanner.nextLine();
-                result = ZonedDateTime.parse(parsedInput.trim());
-            } else if (fieldType.isEnum()) {
-                System.out.print(", possible values for this field: ");
-                Object[] enumConstants = fieldType.getEnumConstants();
-                ArrayList<String> enumConstantNames = new ArrayList<>();
-                for (Object constant : enumConstants) {
-                    Enum<?> value = (Enum<?>) constant;
-                    enumConstantNames.add(value.name());
-                }
-                System.out.print(String.join(", ", enumConstantNames));
-                System.out.print(output);
-                parsedInput = scanner.nextLine().trim();
-                if (!parsedInput.isEmpty()) result = Enum.valueOf((Class<Enum>) fieldType, parsedInput);
+        if (fieldType.isEnum()) {
+            System.out.print(", possible values for this field: ");
+            Object[] enumConstants = fieldType.getEnumConstants();
+            ArrayList<String> enumConstantNames = new ArrayList<>();
+            for (Object constant : enumConstants) {
+                Enum<?> value = (Enum<?>) constant;
+                enumConstantNames.add(value.name());
             }
-        } catch (IllegalArgumentException | InputMismatchException | DateTimeParseException e) {
-            System.out.printf("Cannot properly parse string '" + parsedInput +"', the value must be of type '" + fieldType.getSimpleName() + "'. Please try again");
-            return false;
+            System.out.print(String.join(", ", enumConstantNames));
+        } else if (fieldType.equals(ZonedDateTime.class)) {
+            System.out.print(" (ISO format, e.g., 2023-10-05T14:30:00+03:00)");
         }
-        if (result != null || fieldType.isEnum()) {
+
+        if (!(fieldType.equals(Coordinates.class) || fieldType.equals(Event.class) || fieldType.equals(Ticket.class))) {
+            System.out.print(output);
+            parsedInput = scanner.nextLine().trim();
+            result = parseValue(fieldType, parsedInput);
+
             if (fieldType.equals(String.class) && ((String) result).isEmpty()) {
                 result = null;
             }
@@ -135,7 +100,7 @@ public class InputManager {
                 setterMethod.invoke(instance, result);
                 return true;
             } catch (InvocationTargetException | IllegalAccessException e) {
-                System.out.print(e.getCause().getMessage() + ", please try again");
+                System.out.print(e.getMessage() + ", please try again");
                 return false;
             }
         }
@@ -148,7 +113,7 @@ public class InputManager {
             try {
                 tmpObject = fieldType.getDeclaredConstructor(long.class).newInstance(((Ticket) instance).getId());
             } catch (Exception ex) {
-                throw new RuntimeException("Unexpected EROR");
+                throw new RuntimeException("Unexpected ERROR");
             }
         }
         parseObject(tmpObject);
@@ -159,5 +124,37 @@ public class InputManager {
             System.out.print(e.getCause().getMessage() + ", please try again");
             return false;
         }
+    }
+
+    public Object parseValue(Class<?> fieldType, String valueStr) {
+        try {
+            if (fieldType.equals(int.class) || fieldType.equals(Integer.class)) {
+                return Integer.valueOf(valueStr);
+            } else if (fieldType.equals(long.class) || fieldType.equals(Long.class)) {
+                return Long.valueOf(valueStr);
+            } else if (fieldType.equals(double.class) || fieldType.equals(Double.class)) {
+                return Double.valueOf(valueStr);
+            } else if (fieldType.equals(float.class) || fieldType.equals(Float.class)) {
+                return Float.valueOf(valueStr);
+            } else if (fieldType.equals(boolean.class) || fieldType.equals(Boolean.class)) {
+                if (valueStr.equals("false") || valueStr.equals("true")) return Boolean.valueOf(valueStr);
+                else {
+                    System.out.printf("Cannot properly parse string '" + valueStr + "', the value must be of type '" + fieldType.getSimpleName() + "'. Please try again");
+                    return null;
+                }
+            } else if (fieldType.equals(ZonedDateTime.class)) {
+                return ZonedDateTime.parse(valueStr);
+            } else if (fieldType.isEnum()) {
+                if (!valueStr.isEmpty()) return Enum.valueOf((Class<Enum>) fieldType, valueStr);
+            } else if (fieldType.equals(String.class)) {
+                return valueStr;
+            } else return false;
+        } catch (IllegalArgumentException | InputMismatchException | DateTimeParseException e) {
+            System.out.printf("Cannot properly parse string '" + valueStr +"', the value must be of type '" + fieldType.getSimpleName() + "'. Please try again");
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package main.Given.Enums;
+package main.Model.Enums;
 
 public enum TicketType {
     VIP,

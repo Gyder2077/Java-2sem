@@ -1,18 +1,25 @@
 package main.Commands;
 
-import main.Utils.*;
+import main.Utils.Command;
+import main.Server.MyCollection;
+import main.Utils.Response;
+
+import java.io.Serial;
 
 /**
  * Класс команда для вывода информации о коллекции
  */
 public class Info implements Command {
-    private final MyCollection coll;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public Info(MyCollection coll) {this.coll = coll;}
+    public Info() {}
 
     @Override
-    public void execute() {
-        System.out.printf("Collection type: %s%nCollection size: %d%nCreation date: %s%n",
-                coll.getMyCollection().getClass().getName(), coll.getMyCollection().size(), coll.getCreationDate());
+    public Response execute(MyCollection myCollection) {
+        return new Response(
+                String.format("Collection type: %s%nCollection size: %d%nCreation date: %s%n",
+                        myCollection.getMyCollection().getClass().getName(),
+                        myCollection.getMyCollection().size(), myCollection.getCreationDate()));
     }
 }

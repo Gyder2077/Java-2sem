@@ -1,12 +1,15 @@
 package main.Utils;
 
+import main.Server.MyCollection;
+
+import java.io.Serializable;
+
 /**
  * Абстракция - основа Command Pattern
  */
-public interface Command {
-
+public interface Command extends Serializable {
     /**
      * Основной метод абстракции
      */
-    void execute();
+    Response execute(MyCollection myCollection);
 }

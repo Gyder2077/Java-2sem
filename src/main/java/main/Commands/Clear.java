@@ -1,19 +1,23 @@
 package main.Commands;
 
 import main.Utils.Command;
-import main.Utils.MyCollection;
+import main.Server.MyCollection;
+import main.Utils.Response;
+
+import java.io.Serial;
 
 /**
  * Класс команда для отчистки коллекции
  */
 public class Clear implements Command {
-    private final MyCollection myCollection;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public Clear(MyCollection myCollection) {this.myCollection = myCollection;}
+    public Clear() {}
 
     @Override
-    public void execute() {
-        System.out.println("Clearing the collection...");
+    public Response execute(MyCollection myCollection) {
         myCollection.clearing();
+        return new Response("Clearing the collection...");
     }
 }

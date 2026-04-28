@@ -1,26 +1,30 @@
 package main.Commands;
 
-import main.Given.Enums.TicketType;
-import main.Utils.*;
+import main.Model.Enums.TicketType;
+import main.Utils.Command;
+import main.Server.MyCollection;
+import main.Utils.Response;
+
+import java.io.Serial;
 
 /**
  * Класс команда для вывода отфильтрованных по полю type объектов
  */
 public class FilterLessThanType implements Command {
-    private final TicketType type;
-    private final MyCollection myCollection;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public FilterLessThanType(MyCollection myCollection, TicketType type) {
-        this.myCollection = myCollection;
+    private final TicketType type;
+
+    public FilterLessThanType(TicketType type) {
         this.type = type;
     }
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
         if (myCollection.getMyCollection().isEmpty()) {
-            System.out.println("The collection is empty");
-            return;
+            return new Response("The collection is empty");
         }
-        myCollection.filtered(type);
+        return myCollection.filtered(type);
     }
 }

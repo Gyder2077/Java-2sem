@@ -1,22 +1,25 @@
 package main.Commands;
 
 import main.Utils.Command;
-import main.Utils.MyCollection;
+import main.Server.MyCollection;
+import main.Utils.Response;
+
+import java.io.Serial;
 
 /**
  * Класс команда для вывода всех объектов коллекции в обратном порядке
  */
 public class PrintDescending implements Command {
-    private final MyCollection myCollection;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public PrintDescending(MyCollection myCollection) {this.myCollection = myCollection;}
+    public PrintDescending() {}
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
         if (myCollection.getMyCollection().isEmpty()) {
-            System.out.println("The collection is empty");
-            return;
+            return new Response("The collection is empty");
         }
-        myCollection.showAll(true);
+        return myCollection.showAll(true);
     }
 }

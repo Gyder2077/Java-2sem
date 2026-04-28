@@ -1,12 +1,18 @@
-package main.Given;
+package main.Model;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Подкласс, хранящийся в коллекции
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @JacksonXmlProperty(isAttribute = true)
     private Float coordinateX; //Поле не может быть null
 

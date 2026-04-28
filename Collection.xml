@@ -18,11 +18,11 @@
     </ticket>
     <ticket id="4" name="dfjhsk">
       <coordinates coordinateX="12.0" coordinateY="21.0"/>
-      <creationDate>2026-03-31T19:05:20.694+03:00</creationDate>
+      <creationDate>2026-03-31T16:05:20.694Z</creationDate>
       <price>9876</price>
       <refundable>true</refundable>
       <type/>
-      <event eventId="0" eventName="jads" date="2023-10-05T14:30:00+03:00" eventType="OPERA"/>
+      <event eventId="0" eventName="jads" date="2023-10-05T11:30:00Z" eventType="OPERA"/>
     </ticket>
     <ticket id="2" name="Baseball ticket">
       <coordinates coordinateX="2.0" coordinateY="1.0"/>

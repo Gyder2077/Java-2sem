@@ -1,14 +1,20 @@
-package main.Given;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import main.Given.Enums.*;
+package main.Model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import main.Model.Enums.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
  * Подкласс, хранящийся в коллекции
  */
-public class Event {
+public class Event implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @JacksonXmlProperty(isAttribute = true)
     private long eventId; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 

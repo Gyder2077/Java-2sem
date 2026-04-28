@@ -1,26 +1,29 @@
 package main.Commands;
 
 import main.Utils.Command;
-import main.Utils.MyCollection;
+import main.Server.MyCollection;
+import main.Utils.Response;
+
+import java.io.Serial;
 
 /**
  * Класс команда для вывода отфильтрованных по полю name объектов
  */
 public class FilterContainsName implements Command {
-    private final String name;
-    private final MyCollection myCollection;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public FilterContainsName(MyCollection myCollection, String name) {
+    private final String name;
+
+    public FilterContainsName(String name) {
         this.name = name;
-        this.myCollection = myCollection;
     }
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
         if (myCollection.getMyCollection().isEmpty()) {
-            System.out.println("The collection is empty");
-            return;
+            return new Response("The collection is empty");
         }
-        myCollection.filtered(name);
+        return myCollection.filtered(name);
     }
 }

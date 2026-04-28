@@ -1,22 +1,27 @@
 package main.Commands;
 
-import main.Given.Ticket;
+import main.Model.Ticket;
 import main.Utils.Command;
-import main.Utils.MyCollection;
+import main.Server.MyCollection;
+import main.Utils.Response;
+
+import java.io.Serial;
 
 /**
  * Класс команда для удаления первого элемента коллекции
  */
 public class RemoveFirst implements Command {
-    private final MyCollection myCollection;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public RemoveFirst(MyCollection myCollection) {this.myCollection = myCollection;}
+    public RemoveFirst() {}
 
     @Override
-    public void execute() {
+    public Response execute(MyCollection myCollection) {
         Ticket removed = myCollection.getMyCollection().pollFirst();
         if (removed == null) {
-            System.out.println("The collection is empty");
+            return new Response("The collection is empty");
         }
+        return new Response("The element is removed successfully");
     }
 }
