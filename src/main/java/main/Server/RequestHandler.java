@@ -24,7 +24,7 @@ public class RequestHandler {
     }
 
     public void initChannel(SocketChannel channel) {
-        states.put(channel, new ChannelState());
+        states.put(channel, new ChannelState(channel));
         logger.debug("Channel initialized {}", channel.socket().getRemoteSocketAddress());
     }
 
@@ -143,11 +143,22 @@ public class RequestHandler {
     }
 
     private static class ChannelState {
-        static final int LENGTH_SIZE = Integer.BYTES; // 4
+        static final int LENGTH_SIZE = Integer.BYTES;
+        final String clientAddress;
         final ByteBuffer lengthBuffer = ByteBuffer.allocate(LENGTH_SIZE);
         ByteBuffer dataBuffer;
         int expectedLength = -1;
         boolean readingLength = true;
+
+        ChannelState(SocketChannel channel) {
+            String addr;
+            try {
+                addr = channel.getRemoteAddress().toString();
+            } catch (IOException e) {
+                addr = "unknown";
+            }
+            this.clientAddress = addr;
+        }
 
         void reset() {
             readingLength = true;

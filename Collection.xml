@@ -32,6 +32,14 @@
       <type>CHEAP</type>
       <event eventId="2" eventName="NAME" date="2023-10-05T11:30:00Z" eventType="BASEBALL"/>
     </ticket>
+    <ticket id="5" name="dfjsldfjlshdf">
+      <coordinates coordinateX="2113.0" coordinateY="3.213121231E9"/>
+      <creationDate/>
+      <price>133442131</price>
+      <refundable>true</refundable>
+      <type/>
+      <event eventId="0" eventName="fdkbjshfdf" date="2023-10-05T11:30:00Z" eventType="OPERA"/>
+    </ticket>
   </tickets>
   <history>
     <command>info</command>
@@ -44,5 +52,5 @@
     <command>show</command>
   </history>
   <creationDate>2026-03-17T02:19:46.291Z</creationDate>
-  <nextId>5</nextId>
+  <nextId>6</nextId>
 </collection>
