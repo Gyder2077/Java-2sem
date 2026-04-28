@@ -1,0 +1,5 @@
+2026-04-28 16:22:44.638 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 16:22:44.740 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 16:22:59.901 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:58750
+2026-04-28 16:22:59.916 [main] INFO  main.Server.RequestHandler - Command received Info from /127.0.0.1:58750
+2026-04-28 16:22:59.944 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:58750
