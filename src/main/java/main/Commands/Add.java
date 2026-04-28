@@ -2,12 +2,10 @@ package main.Commands;
 
 import main.Model.Ticket;
 import main.Utils.*;
-import main.Client.InputManager;
 import main.Server.MyCollection;
 
 import java.io.Serial;
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * Класс команда для добавления объекта в коллекцию

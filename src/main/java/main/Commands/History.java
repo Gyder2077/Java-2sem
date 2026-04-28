@@ -26,7 +26,7 @@ public class History implements Command {
         StringBuilder response = new StringBuilder();
         response.append("Last used commands:\n");
         AtomicInteger i = new AtomicInteger(1);
-        history.stream().forEach(command ->
+        history.forEach(command ->
                 response.append(String.format("%d - %s%n", i.getAndIncrement(), command))
         );
         return new Response(response.toString());

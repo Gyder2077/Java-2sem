@@ -14,7 +14,7 @@ import java.util.*;
 public class ConsoleManager {
     private Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
-    private final Set<String> executingScripts = new HashSet<>();
+//    private final Set<String> executingScripts = new HashSet<>();
     private final ConnectionManager connectionManager;
 
     /**
