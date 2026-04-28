@@ -122,10 +122,17 @@ public class RequestHandler {
     }
 
 
-    public void closeChannel(SocketChannel channel) throws IOException {
-        states.remove(channel);
-        channel.close();
-        logger.info("Connection closed with {}", channel.getRemoteAddress());
+    public void closeChannel(SocketChannel channel) {
+        ChannelState state = states.remove(channel);
+        String address = (state != null) ? state.clientAddress : "unknown";
+        try {
+            if (channel.isOpen()) {
+                channel.close();
+            }
+        } catch (IOException e) {
+            // подавляем
+        }
+        logger.info("Connection closed with {}", address);
     }
 
     private boolean isModifyingCommand(Command command) {
