@@ -15,7 +15,7 @@ public class DatabaseManager {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/studs";
     private static final String USER = "s502336";
-    private static final String PASSWORD = "FXdy>9719";
+    private static final String PASSWORD = "NqpqGAsC9PLWVnRR";
 
     static {
         try {

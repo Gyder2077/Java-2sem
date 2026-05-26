@@ -12,9 +12,9 @@ import java.util.logging.Logger;
  */
 public class UserManager {
     private static final Logger LOGGER = Logger.getLogger(UserManager.class.getName());
-    private static final String URL = "jdbc:postgresql://pg:5432/studs";
-    private static final String DB_USER = "s123456";
-    private static final String DB_PASSWORD = "your_pass";
+    private static final String URL = "jdbc:postgresql://localhost:5432/studs";
+    private static final String DB_USER = "s502336";
+    private static final String DB_PASSWORD = "NqpqGAsC9PLWVnRR";
 
     static {
         try { Class.forName("org.postgresql.Driver"); }

@@ -156,3 +156,56 @@ java.nio.channels.ClosedChannelException: null
 	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
 	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
 	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:59:10.675 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 20:59:10.770 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 20:59:31.205 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:50912
+2026-05-26 20:59:31.254 [Thread-2] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:59:31.252 [Thread-1] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:59:31.255 [Thread-3] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:59:43.480 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:50966
+2026-05-26 20:59:43.515 [Thread-5] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:59:43.519 [Thread-6] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 21:03:19.289 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 21:03:19.380 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 21:04:05.600 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 21:04:05.684 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 21:07:32.896 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 21:07:33.064 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 21:08:15.777 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 21:08:15.870 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 21:08:30.608 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56670
+2026-05-26 21:08:33.341 [Thread-3] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 21:09:13.255 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 21:09:13.357 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 21:09:49.610 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 21:09:49.687 [main] INFO  main.Server.ServerMain - Server started on port 12346
