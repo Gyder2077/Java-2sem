@@ -22,7 +22,7 @@ public class FilterLessThanType implements Command {
 
     @Override
     public Response execute(MyCollection myCollection) {
-        if (myCollection.getMyCollection().isEmpty()) {
+        if (myCollection.getTickets().isEmpty()) {
             return new Response("The collection is empty");
         }
         return myCollection.filtered(type);

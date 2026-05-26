@@ -17,11 +17,14 @@ public class RemoveFirst implements Command {
     public RemoveFirst() {}
 
     @Override
-    public Response execute(MyCollection myCollection) {
-        Ticket removed = myCollection.getMyCollection().pollFirst();
-        if (removed == null) {
-            return new Response("The collection is empty");
+    public Response execute(MyCollection collection) {
+        synchronized (collection.getTickets()) {
+            if (collection.getTickets().isEmpty()) {
+                return new Response("Collection is empty", false);
+            }
+            Ticket first = collection.getTickets().iterator().next();
+            collection.delElement(first.getId());
+            return new Response("First object deleted successfully");
         }
-        return new Response("The element is removed successfully");
     }
 }

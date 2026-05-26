@@ -1,6 +1,6 @@
 package main.Server;
 
-import main.Utils.*;
+import main.Model.Ticket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,18 +8,29 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.*;
 import java.util.Iterator;
+import java.util.concurrent.*;
 
 public class ServerMain {
     private static final Logger logger = LoggerFactory.getLogger(ServerMain.class);
-    private static final int PORT = 12345;
+    private static final int PORT = 12346;
+
+    private static final ForkJoinPool READING_POOL = new ForkJoinPool(4);
+    private static final ExecutorService PROCESSING_POOL = Executors.newCachedThreadPool();
+
+    public static ExecutorService getProcessingPool() { return PROCESSING_POOL; }
 
     public static void main(String[] args) {
         try {
-            FileManager fileManager = new FileManager();
-            MyCollection myCollection = fileManager.parseXML();
-            logger.info("XML file was read successfully");
+            DatabaseManager dbManager = new DatabaseManager();
+            UserManager userManager = new UserManager();
+            MyCollection collection = new MyCollection();
 
-            RequestHandler requestHandler = new RequestHandler(myCollection, fileManager);
+            for (Ticket t : dbManager.loadAllTickets().values()) {
+                collection.addElement(t);
+            }
+            logger.info("Loaded {} tickets from DB", collection.getTickets().size());
+
+            RequestHandler requestHandler = new RequestHandler(collection, dbManager, userManager);
 
             ServerSocketChannel serverChannel = ServerSocketChannel.open();
             serverChannel.bind(new InetSocketAddress(PORT));
@@ -29,22 +40,14 @@ public class ServerMain {
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
 
             ConnectionHandler connectionHandler = new ConnectionHandler();
-
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                logger.info("Shutting down the server, saving the collection...");
-                requestHandler.saveCollection();
-            }));
-
-            logger.info("The server is running on port {}", PORT);
+            logger.info("Server started on port {}", PORT);
 
             while (true) {
                 selector.select();
                 Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
-
                 while (keys.hasNext()) {
                     SelectionKey key = keys.next();
                     keys.remove();
-
                     if (!key.isValid()) continue;
 
                     try {
@@ -56,27 +59,18 @@ public class ServerMain {
                             }
                         } else if (key.isReadable()) {
                             SocketChannel client = (SocketChannel) key.channel();
-                            Command command = requestHandler.handleRead(client);
-                            if (command != null) {
-                                Response response = requestHandler.processCommand(command);
-                                requestHandler.prepareResponse(client, response, selector);
-                            }
-                        } else if (key.isWritable()) {
-                            requestHandler.handleWrite(key);
+                            READING_POOL.submit(() -> {
+                                try { requestHandler.handleRead(client); }
+                                catch (IOException e) { requestHandler.closeChannel(client); }
+                            });
                         }
                     } catch (IOException e) {
-                        logger.error("ERROR processing channel", e);
+                        logger.error("Channel error", e);
                         key.cancel();
-                        try {
-                            key.channel().close();
-                        } catch (IOException ex) {
-//                            Так надо
-                        }
+                        try { key.channel().close(); } catch (IOException ignored) {}
                     }
                 }
             }
-        } catch (IOException e) {
-            logger.error("Critical ERROR!", e);
-        }
+        } catch (IOException e) { logger.error("Critical server error", e); }
     }
 }

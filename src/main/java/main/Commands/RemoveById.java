@@ -19,9 +19,13 @@ public class RemoveById implements Command {
         this.id = id;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public Response execute(MyCollection myCollection) {
-        if (myCollection.getMyCollection().isEmpty()) {
+        if (myCollection.getTickets().isEmpty()) {
             return new Response("The collection is empty");
         }
         try {

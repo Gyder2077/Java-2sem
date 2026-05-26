@@ -32,6 +32,22 @@
       <type>CHEAP</type>
       <event eventId="2" eventName="NAME" date="2023-10-05T11:30:00Z" eventType="BASEBALL"/>
     </ticket>
+    <ticket id="7" name="cfghjkk">
+      <coordinates coordinateX="1234.0" coordinateY="12345.0"/>
+      <creationDate/>
+      <price>234567</price>
+      <refundable>true</refundable>
+      <type/>
+      <event eventId="0" eventName="ghjk" date="2023-10-05T11:30:00Z" eventType="OPERA"/>
+    </ticket>
+    <ticket id="6" name="fkdfkmmef">
+      <coordinates coordinateX="1234.0" coordinateY="1.234324635E9"/>
+      <creationDate/>
+      <price>2134321</price>
+      <refundable>false</refundable>
+      <type/>
+      <event eventId="0" eventName="cmg;sfdkf;s" date="2023-10-05T11:30:00Z" eventType="CONCERT"/>
+    </ticket>
     <ticket id="5" name="dfjsldfjlshdf">
       <coordinates coordinateX="2113.0" coordinateY="3.213121231E9"/>
       <creationDate/>
@@ -52,5 +68,5 @@
     <command>show</command>
   </history>
   <creationDate>2026-03-17T02:19:46.291Z</creationDate>
-  <nextId>6</nextId>
+  <nextId>8</nextId>
 </collection>

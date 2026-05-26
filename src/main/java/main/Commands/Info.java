@@ -19,7 +19,7 @@ public class Info implements Command {
     public Response execute(MyCollection myCollection) {
         return new Response(
                 String.format("Collection type: %s%nCollection size: %d%nCreation date: %s%n",
-                        myCollection.getMyCollection().getClass().getName(),
-                        myCollection.getMyCollection().size(), myCollection.getCreationDate()));
+                        myCollection.getTickets().getClass().getName(),
+                        myCollection.getTickets().size(), myCollection.getCreationDate()));
     }
 }

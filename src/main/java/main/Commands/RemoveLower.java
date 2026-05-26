@@ -23,14 +23,14 @@ public class RemoveLower implements Command {
 
     @Override
     public Response execute(MyCollection myCollection) {
-        if (myCollection.getMyCollection().isEmpty()) {
+        if (myCollection.getTickets().isEmpty()) {
             return new Response("The collection is empty");
         }
         if (Objects.isNull(ticket)) {
             return new Response("Unexpected ERROR, try again later!");
         }
         long counter = 0;
-        Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
+        Iterator<Ticket> iterator = myCollection.getTickets().iterator();
         while (iterator.hasNext()) {
             Ticket t = iterator.next();
             if (t.compareTo(ticket) < 0) {

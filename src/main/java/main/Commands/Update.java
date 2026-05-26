@@ -23,12 +23,20 @@ public class Update implements Command {
         this.newTicket = newTicket;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public Ticket getTicket() {
+        return newTicket;
+    }
+
     @Override
     public Response execute(MyCollection myCollection) {
-        if (myCollection.getMyCollection().isEmpty()) {
+        if (myCollection.getTickets().isEmpty()) {
             return new Response("The collection is empty");
         }
-        Iterator<Ticket> iterator = myCollection.getMyCollection().iterator();
+        Iterator<Ticket> iterator = myCollection.getTickets().iterator();
         while (iterator.hasNext()) {
             Ticket t = iterator.next();
             if (t.getId() == id) {

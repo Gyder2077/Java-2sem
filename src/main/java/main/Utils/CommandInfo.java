@@ -1,5 +1,8 @@
 package main.Utils;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * Запись, хранящая всю информацию о конкретной команде
  *
@@ -10,4 +13,7 @@ package main.Utils;
  * @param description Описание команды
  * @param factory Фабрика (Функциональный интерфейс)
  */
-public record CommandInfo(String name, String description, CommandFactory factory) { }
+public record CommandInfo(String name, String description, CommandFactory factory) implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+}

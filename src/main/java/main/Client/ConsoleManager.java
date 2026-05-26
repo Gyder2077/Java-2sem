@@ -6,15 +6,15 @@ import main.Model.Ticket;
 import main.Utils.*;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Класс осуществляющий запуск и корректную работу консольного приложения
  */
-public class ConsoleManager {
+public class ConsoleManager implements Serializable {
     private Scanner scanner = new Scanner(System.in);
     private final Map<String, CommandInfo> commands = new HashMap<>();
-//    private final Set<String> executingScripts = new HashSet<>();
     private final ConnectionManager connectionManager;
 
     /**
@@ -167,25 +167,19 @@ public class ConsoleManager {
                     System.out.println("The 'clear' command requires no arguments");
                     return null;
                 }));
-
-//        commands.put("execute_script", new CommandInfo("execute_script",
-//                    "Executes commands from the file, from environment variable 'SCRIPT_FILE'", args -> {
-//                    if (args.length == 1) {
-//                        return new ExecuteScript(this, args[0], executingScripts);
-//                    }
-//                    System.out.println("One argument 'filename' is required");
-//                    return null;
-//                }));
-    }
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
     }
 
     /**
      * Непосредственный запуск приложения
      */
     public void run() {
+        AuthDialog authDialog = new AuthDialog(connectionManager, scanner);
+        while (true) {
+            if (authDialog.authenticate()) {
+                break;
+            }
+        }
+
         System.out.println("Client is running. Enter 'help' for info");
         while (true) {
             System.out.print(">> ");
@@ -198,6 +192,7 @@ public class ConsoleManager {
 
 
             if (commandName.equalsIgnoreCase("exit")) {
+                UserSession.getInstance().clear();
                 System.out.println("Exiting the program...");
                 break;
             }
@@ -213,46 +208,23 @@ public class ConsoleManager {
                 continue;
             }
 
+            if (!UserSession.getInstance().isAuthenticated()) {
+                System.out.println("Error: authorisation is needed");
+                continue;
+            }
+
+            Request request = new Request(
+                    UserSession.getInstance().getLogin(),
+                    UserSession.getInstance().getPasswordHash(),
+                    command
+            );
+
             try {
-                Response response = connectionManager.sendCommand(command);
+                Response response = connectionManager.sendRequest(request);
                 System.out.println(response.message());
             } catch (IOException e) {
                 System.out.println("ERROR: " + e.getMessage());
             }
         }
     }
-
-//    /**
-//     * Обработка поступающих из консоли/скрипта команд
-//     */
-//    public boolean runCommand(String input) {
-//        String[] parts = input.split("\\s+");
-//        String commandName = parts[0].toLowerCase();
-//        String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
-//
-//        CommandInfo info = commands.get(commandName);
-//        if (info == null) {
-//            System.out.println("Unsupported command. Enter 'help' for info");
-//            return false;
-//        }
-//
-//        Command command = info.factory().create(commandArgs);
-//        if (command == null) {
-//            return false;
-//        }
-//
-//        System.out.println("Executing command: " + info.name());
-//        System.out.println();
-//        command.execute(receiver);
-//
-//
-//        if (receiver.getHistory().size() == 8) {
-//            receiver.getHistory().addLast(info.name());
-//            receiver.getHistory().pollFirst();
-//        } else {
-//            receiver.getHistory().addLast(info.name());
-//        }
-//        System.out.println();
-//        return true;
-//    }
 }

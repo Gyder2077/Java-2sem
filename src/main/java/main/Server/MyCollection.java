@@ -2,118 +2,89 @@ package main.Server;
 
 import main.Model.Enums.TicketType;
 import main.Model.Ticket;
+import main.Utils.Response;
 
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import main.Utils.Response;
+import java.util.stream.Stream;
 
 /**
- * Класс коллекция объектов
+ * Хранилище коллекции билетов в памяти.
+ * Адаптировано под БД: убран XML, добавлена синхронизация, убран ручной nextId.
  */
-@JacksonXmlRootElement(localName = "collection")
 public class MyCollection {
-    @JsonDeserialize(as = ArrayDeque.class)
-    @JacksonXmlProperty(localName = "ticket")
-    @JacksonXmlElementWrapper(localName = "tickets")
-    private ArrayDeque<Ticket> myCollection = new ArrayDeque<>();
 
-    @JsonDeserialize(as = ArrayDeque.class)
-    @JacksonXmlProperty(localName = "command")
-    @JacksonXmlElementWrapper(localName = "history")
-    private ArrayDeque<String> history = new ArrayDeque<>();
+    private final Collection<Ticket> tickets = Collections.synchronizedCollection(new LinkedHashSet<>());
 
-    @JacksonXmlProperty(localName = "creationDate")
-    private ZonedDateTime creationDate;
+    private final ArrayDeque<String> history = new ArrayDeque<>();
+    private final ZonedDateTime creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
 
-    @JacksonXmlProperty(localName = "nextId")
-    private long nextId;
+    public MyCollection() {}
 
-    public MyCollection() {
-        creationDate = ZonedDateTime.now().truncatedTo(ChronoUnit.MILLIS);
-    }
-
-    public void setCreationDate(ZonedDateTime creationDate) {this.creationDate = creationDate;}
-
-    public ZonedDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setHistory(ArrayDeque<String> history) {this.history = history;}
-
-    public ArrayDeque<String> getHistory() {return history;}
-
-    public ArrayDeque<Ticket> getMyCollection() {
-        return myCollection;
-    }
-
-    public void setMyCollection(ArrayDeque<Ticket> myCollection) {
-        this.myCollection = myCollection;
-    }
-
-    public void setNextId(long nextId) {this.nextId = nextId;}
-
-    public long getNextId() {
-        return nextId;
-    }
-
-    public void clearing() {
-        myCollection.clear();
-    }
+    public Collection<Ticket> getTickets() { return tickets; }
+    public ArrayDeque<String> getHistory() { return history; }
+    public ZonedDateTime getCreationDate() { return creationDate; }
 
     public void addElement(Ticket ticket) {
-        myCollection.add(ticket);
-        myCollection = myCollection.stream()
-                .sorted().collect(Collectors.toCollection(ArrayDeque::new));
+        synchronized (tickets) {
+            tickets.add(ticket);
+            List<Ticket> sorted = tickets.stream().sorted().toList();
+            tickets.clear();
+            tickets.addAll(sorted);
+        }
     }
 
-    public void delElement(long id) {
-        Ticket toRemove = myCollection.stream()
-                .filter(t -> t.getId() == id)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No element with such ID"));
-        myCollection.remove(toRemove);
+    /**
+     * Удаляет элемент по ID. Возвращает true, если удаление прошло успешно.
+     * Не выбрасывает исключения, чтобы не ломать цепочку syncToDatabase.
+     */
+    public boolean delElement(long id) {
+        synchronized (tickets) {
+            return tickets.removeIf(t -> t.getId() == id);
+        }
+    }
+
+    public void clearCollection() {
+        synchronized (tickets) {
+            tickets.clear();
+        }
     }
 
     public Response showAll(boolean descending) {
-        String header = "All elements from the collection"
-                + (descending ? " in reverse:\n" : ":\n");
-
-        String body = (descending ? myCollection.stream()
-                .sorted(Comparator.reverseOrder()) : myCollection.stream())
-                .map(ticket -> ticket.toString() + "\n")
-                .collect(Collectors.joining());
-
-        return new Response(header + body);
+        synchronized (tickets) {
+            String header = "All elements from the collection" + (descending ? " in reverse:\n" : ":\n");
+            Stream<Ticket> stream = tickets.stream();
+            if (descending) stream = stream.sorted(Comparator.reverseOrder());
+            String body = stream.map(Ticket::toString).collect(Collectors.joining("\n"));
+            return new Response(header + body);
+        }
     }
 
     public Response filtered(String name) {
-        StringBuilder response = new StringBuilder("Filtered elements:\n");
-        var filteredList = myCollection.stream()
-                .filter(ticket -> ticket.getName().contains(name))
-                .toList();
-        if (filteredList.isEmpty()) {
-            return new Response("No elements with appropriate name were found");
-        } else {
-            filteredList.forEach(response::append);
-            return new Response(response.toString());
+        synchronized (tickets) {
+            var list = tickets.stream()
+                    .filter(t -> t.getName() != null && t.getName().contains(name))
+                    .toList();
+            if (list.isEmpty()) return new Response("Элементы с таким именем не найдены", false);
+            return new Response("Отфильтрованные элементы:\n" + list.stream().map(Ticket::toString).collect(Collectors.joining("\n")));
         }
     }
 
     public Response filtered(TicketType type) {
-        StringBuilder response = new StringBuilder("Filtered elements:\n");
-        var filteredList = myCollection.stream()
-                .filter(ticket -> ticket.getType().ordinal() <= type.ordinal())
-                .toList();
-        if (filteredList.isEmpty()) {
-            return new Response("No elements with appropriate name were found");
-        } else {
-            filteredList.forEach(response::append);
-            return new Response(response.toString());
+        synchronized (tickets) {
+            var list = tickets.stream()
+                    .filter(t -> t.getType() != null && t.getType().ordinal() <= type.ordinal())
+                    .toList();
+            if (list.isEmpty()) return new Response("Элементы с таким типом не найдены", false);
+            return new Response("Отфильтрованные элементы:\n" + list.stream().map(Ticket::toString).collect(Collectors.joining("\n")));
+        }
+    }
+
+    public boolean containsTicket(long id) {
+        synchronized (tickets) {
+            return tickets.stream().anyMatch(t -> t.getId() == id);
         }
     }
 }

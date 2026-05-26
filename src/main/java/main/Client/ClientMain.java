@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ClientMain {
     public static void main(String[] args) {
-        ConnectionManager connectionManager = new ConnectionManager("localhost", 12345);
+        ConnectionManager connectionManager = new ConnectionManager("localhost", 12346);
         Scanner scanner = new Scanner(System.in);
         ConsoleManager consoleManager = new ConsoleManager(connectionManager);
         consoleManager.run();

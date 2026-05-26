@@ -3,3 +3,156 @@
 2026-04-28 16:22:59.901 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:58750
 2026-04-28 16:22:59.916 [main] INFO  main.Server.RequestHandler - Command received Info from /127.0.0.1:58750
 2026-04-28 16:22:59.944 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:58750
+2026-04-28 16:25:55.806 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 16:25:55.866 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 16:33:10.736 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 16:33:10.773 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 16:33:17.525 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:63638
+2026-04-28 16:33:17.579 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:63638
+2026-04-28 16:36:34.619 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 16:36:34.664 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 16:36:37.976 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 16:36:38.015 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 16:36:43.946 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:59727
+2026-04-28 16:36:43.992 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:59727
+2026-04-28 16:38:46.236 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56588
+2026-04-28 16:38:46.241 [main] INFO  main.Server.RequestHandler - Command received History from /127.0.0.1:56588
+2026-04-28 16:38:46.282 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56588
+2026-04-28 16:38:53.741 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56590
+2026-04-28 16:38:53.744 [main] INFO  main.Server.RequestHandler - Command received Show from /127.0.0.1:56590
+2026-04-28 16:38:53.751 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56590
+2026-04-28 16:39:39.856 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56592
+2026-04-28 16:39:39.859 [main] INFO  main.Server.RequestHandler - Command received Add from /127.0.0.1:56592
+2026-04-28 16:39:39.934 [main] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 16:39:39.935 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56592
+2026-04-28 16:42:10.721 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 16:42:10.742 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 17:41:42.911 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 17:41:42.952 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 17:41:54.109 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:59215
+2026-04-28 17:41:54.166 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:59215
+2026-04-28 17:51:13.266 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 17:51:13.310 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 17:54:08.612 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 17:54:08.655 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 17:54:39.886 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:51460
+2026-04-28 17:54:39.891 [main] INFO  main.Server.RequestHandler - Command received PrintDescending from /127.0.0.1:51460
+2026-04-28 17:54:39.938 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:51460
+2026-04-28 17:54:45.067 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:51462
+2026-04-28 17:54:45.067 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:51462
+2026-04-28 17:56:36.490 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:54245
+2026-04-28 17:56:36.522 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:54245
+2026-04-28 17:56:58.535 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:49384
+2026-04-28 17:56:58.586 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:49384
+2026-04-28 17:57:45.825 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:49397
+2026-04-28 17:57:45.843 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:49397
+2026-04-28 17:58:12.732 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:49665
+2026-04-28 17:58:12.748 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:49665
+2026-04-28 17:58:41.666 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 17:58:41.722 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 18:02:05.394 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 18:02:05.502 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 18:02:09.856 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:52222
+2026-04-28 18:02:09.872 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:52222
+2026-04-28 18:11:10.149 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:54450
+2026-04-28 18:11:10.180 [main] INFO  main.Server.RequestHandler - Command received Add from /127.0.0.1:54450
+2026-04-28 18:11:10.252 [main] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 18:11:10.281 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:54450
+2026-04-28 18:11:31.122 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 18:11:31.135 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 18:11:41.055 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 18:11:41.097 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 18:11:51.603 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:54464
+2026-04-28 18:11:51.608 [main] INFO  main.Server.RequestHandler - Command received Show from /127.0.0.1:54464
+2026-04-28 18:11:51.622 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:54464
+2026-04-28 18:13:24.960 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 18:13:25.024 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 18:14:05.326 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 18:14:05.373 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 18:14:11.231 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:62389
+2026-04-28 18:14:11.236 [main] INFO  main.Server.RequestHandler - Command received Info from /127.0.0.1:62389
+2026-04-28 18:14:11.242 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:62389
+2026-04-28 18:15:16.455 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:61728
+2026-04-28 18:15:16.458 [main] INFO  main.Server.RequestHandler - Command received Info from /127.0.0.1:61728
+2026-04-28 18:15:16.479 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:61728
+2026-04-28 18:15:18.967 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 18:15:19.034 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 18:58:46.182 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 18:58:46.333 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 20:15:43.099 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-28 20:15:43.150 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-28 20:15:51.924 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56783
+2026-04-28 20:15:51.930 [main] INFO  main.Server.RequestHandler - Command received Info from /127.0.0.1:56783
+2026-04-28 20:15:51.953 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56783
+2026-04-28 20:15:54.959 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56785
+2026-04-28 20:15:54.962 [main] INFO  main.Server.RequestHandler - Command received Show from /127.0.0.1:56785
+2026-04-28 20:15:54.969 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56785
+2026-04-28 20:17:00.500 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56788
+2026-04-28 20:17:00.514 [main] INFO  main.Server.RequestHandler - Command received Add from /127.0.0.1:56788
+2026-04-28 20:17:00.603 [main] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-28 20:17:00.605 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56788
+2026-04-28 20:17:07.501 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-28 20:17:07.521 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-29 00:10:51.211 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-29 00:10:51.254 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-29 00:11:29.720 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:52408
+2026-04-29 00:11:29.724 [main] INFO  main.Server.RequestHandler - Command received Info from /127.0.0.1:52408
+2026-04-29 00:11:29.739 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:52408
+2026-04-29 00:11:48.987 [Thread-0] INFO  main.Server.ServerMain - Shutting down the server, saving the collection...
+2026-04-29 00:11:49.087 [Thread-0] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-29 00:12:05.195 [main] INFO  main.Server.ServerMain - XML file was read successfully
+2026-04-29 00:12:05.249 [main] INFO  main.Server.ServerMain - The server is running on port 12345
+2026-04-29 00:12:08.006 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:64006
+2026-04-29 00:12:08.022 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:64006
+2026-04-29 00:12:18.067 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:64009
+2026-04-29 00:12:18.068 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:64009
+2026-04-29 00:13:03.486 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:56428
+2026-04-29 00:13:03.491 [main] INFO  main.Server.RequestHandler - Command received Add from /127.0.0.1:56428
+2026-04-29 00:13:03.573 [main] INFO  main.Server.RequestHandler - Collection was saved to file
+2026-04-29 00:13:03.577 [main] INFO  main.Server.RequestHandler - Connection closed with /127.0.0.1:56428
+2026-05-26 20:49:16.437 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 20:49:16.523 [main] INFO  main.Server.ServerMain - Server started on port 12345
+2026-05-26 20:50:32.918 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 20:50:33.018 [main] INFO  main.Server.ServerMain - Server started on port 12345
+2026-05-26 20:53:22.790 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 20:53:22.922 [main] INFO  main.Server.ServerMain - Server started on port 12345
+2026-05-26 20:54:26.419 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:62431
+2026-05-26 20:54:29.233 [Thread-2] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:54:29.233 [Thread-3] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:54:29.228 [Thread-1] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:55:35.579 [main] INFO  main.Server.ServerMain - Loaded 0 tickets from DB
+2026-05-26 20:55:35.717 [main] INFO  main.Server.ServerMain - Server started on port 12346
+2026-05-26 20:55:45.722 [main] INFO  main.Server.ConnectionHandler - New TCP connection from /127.0.0.1:52561
+2026-05-26 20:55:48.507 [Thread-3] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:55:48.505 [Thread-1] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-26 20:55:48.507 [Thread-2] ERROR main.Server.RequestHandler - Failed to send response
+java.nio.channels.ClosedChannelException: null
+	at java.base/java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(AbstractSelectableChannel.java:319)
+	at main.Server.RequestHandler.sendResponse(RequestHandler.java:186)
+	at main.Server.RequestHandler.lambda$processRequest$1(RequestHandler.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:842)

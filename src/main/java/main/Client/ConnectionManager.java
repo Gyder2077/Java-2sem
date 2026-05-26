@@ -14,11 +14,11 @@ public class ConnectionManager {
         this.port = port;
     }
 
-    public Response sendCommand(Command command) throws IOException {
+    public Response sendRequest(Request request) throws IOException {
         int attempt = 0;
         while (true) {
             try {
-                return trySendCommand(command);
+                return trySendRequest(request);
             } catch (SocketTimeoutException e) {
                 attempt++;
                 if (attempt >= 5) {
@@ -35,14 +35,14 @@ public class ConnectionManager {
         }
     }
 
-    private Response trySendCommand(Command command) throws IOException {
+    private Response trySendRequest(Request request) throws IOException {
         try (Socket socket = new Socket(host, port);
              OutputStream os = socket.getOutputStream();
              InputStream is = socket.getInputStream()) {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
-                oos.writeObject(command);
+                oos.writeObject(request);
             }
             byte[] cmdData = baos.toByteArray();
 
